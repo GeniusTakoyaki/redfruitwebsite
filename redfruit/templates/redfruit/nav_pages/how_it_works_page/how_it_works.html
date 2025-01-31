@@ -1,0 +1,55 @@
+{% extends 'redfruit/base.html' %}
+
+{% load static %}
+
+{% block title %}How It Works - RedFruit{% endblock %}
+
+{% block styles %}
+<link href="{% static 'redfruit/css/styles.css' %}?v=1.0" rel="stylesheet" />
+{% endblock %}
+
+{% block content %}
+
+
+<div class="m-5" id="grid_container">
+  <div class="row h-50">
+    <div class="col-sm">
+      <div class="card">
+        <div class="card-body">
+          Train Loss
+        </div>
+      </div>
+    </div>
+    <div class="col-sm">
+      <div class="card">
+        <div class="card-body">
+          Confusion Matrix
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="row h-50">
+    <div class="col-sm">
+      <div class="card">
+        <div class="card-body">
+          Test Loss
+        </div>
+      </div>
+    </div>
+    <div class="col-sm">
+      <div class="card">
+        <div class="card-body">
+          Classification Report
+        </div>
+      </div>
+    </div>
+  </div>
+
+    
+  </div>
+
+  
+
+
+{% endblock %}

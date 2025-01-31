@@ -1,0 +1,43 @@
+{% extends 'redfruit/base.html' %}
+
+{% load static %}
+
+{% block title %}Home - RedFruit{% endblock %}
+
+{% block styles %}
+<link href="{% static 'redfruit/css/styles.css' %}?v=1.0" rel="stylesheet" />
+{% endblock %}
+
+{% block content %}
+
+
+<header class="masthead p-0 m-0 position-relative">
+    <div class="container-vid">
+        <div class="row gx-0 p-0 m-0 d-flex">
+            <div class="col-lg-6 ">
+                <div class="p-4">
+                <!-- Mashead text and app badges-->
+                    <div class="mb-5 mb-lg-0">
+                        <h1 class="display-1 lh-1 mb-3">Redfruit: AI</h1>
+                        <p class="lead fw-normal text-muted mb-5">Redfruit Classifier is a deep learning model focused on distinguishing between apples and tomatoes by analyzing the image</p>
+                        <div class="d-flex flex-column flex-lg-row">
+                            <a class="me-lg-3 mb-4 mb-lg-0" href="{% url 'ai-folder' %}">
+                                <button class="button-33 fw-normal" role="button">Get Started</button>
+                            </a>
+                            <a href="{% url 'discover' %}">
+                                <button class="button-33 fw-normal" id="light_button" role="button">Learn more</button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 p-0 m-0" id="mobile_layout">
+                <div class="rotating-container">
+                    <img src="{% static 'redfruit/assets/img/tomato-slice.png' %}" alt="Rotating Image" class="rotating-image">
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</header> 
+{% endblock %}

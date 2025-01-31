@@ -1,0 +1,55 @@
+{% extends 'redfruit/base.html' %}
+
+{% load static %}
+
+{% block title %}Discover - RedFruit{% endblock %}
+
+{% block styles %}
+<link href="{% static 'redfruit/css/styles.css' %}?v=1.0" rel="stylesheet" />
+<link href="{% static 'redfruit/css/discover.css' %}?v=1.0" rel="stylesheet" />
+{% endblock %}
+{% block content %}
+
+<div class='dataset-container'>
+  <div class="row-container">
+    <div class="slider" style="
+      --width: 300px;
+      --height: calc(100vh - (2rem + 40px));
+      --quantity: 4;
+      ">
+      <div class="list">
+        <div class="item" style="--position: 1"><img src="{% static 'redfruit/assets/img/sample_tomato/tomato1.jpeg' %}" alt="Tomato Image"></div>
+        <div class="item" style="--position: 2"><img src="{% static 'redfruit/assets/img/sample_tomato/tomato2.jpeg' %}" alt="Tomato Image"></div>
+        <div class="item" style="--position: 3"><img src="{% static 'redfruit/assets/img/sample_tomato/tomato3.jpeg' %}" alt="Tomato Image"></div>
+        <div class="item" style="--position: 4"><img src="{% static 'redfruit/assets/img/sample_tomato/tomato4.jpeg' %}" alt="Tomato Image"></div>
+        <div class="item" style="--position: 5"><img src="{% static 'redfruit/assets/img/sample_tomato/tomato5.jpeg' %}" alt="Tomato Image"></div>
+        <div class="item" style="--position: 6"><img src="{% static 'redfruit/assets/img/sample_tomato/tomato6.jpeg' %}" alt="Tomato Image"></div>
+        
+      </div>
+    </div>
+
+    <div class="slider" reverse="true" style="
+      --width: 300px;
+      --height: calc(100vh - (2rem + 40px));
+      --quantity: 4;
+      " id="slider2">
+      <div class="list">
+        <div class="item" style="--position: 1"><img src="{% static 'redfruit/assets/img/sample_apple/apple1.jpg' %}" alt="Apple Image"></div>
+        <div class="item" style="--position: 2"><img src="{% static 'redfruit/assets/img/sample_apple/apple2.jpeg' %}" alt="Apple Image"></div>
+        <div class="item" style="--position: 3"><img src="{% static 'redfruit/assets/img/sample_apple/apple3.jpeg' %}" alt="Apple Image"></div>
+        <div class="item" style="--position: 4"><img src="{% static 'redfruit/assets/img/sample_apple/apple4.jpeg' %}" alt="Apple Image"></div>
+        <div class="item" style="--position: 5"><img src="{% static 'redfruit/assets/img/sample_apple/apple5.jpeg' %}" alt="Apple Image"></div>
+        <div class="item" style="--position: 6"><img src="{% static 'redfruit/assets/img/sample_apple/apple6.jpeg' %}" alt="Apple Image"></div>
+        
+      </div>
+    </div>
+  </div>
+  
+</div>
+
+
+
+<!-- <img src="{% static 'redfruit/assets/img/sample_apple/apple6.jpeg' %}" alt="Apple Image"> -->
+
+
+{% endblock %}

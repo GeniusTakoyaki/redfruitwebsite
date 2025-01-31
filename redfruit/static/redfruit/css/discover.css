@@ -1,0 +1,80 @@
+body {
+    overflow-y: auto !important;
+}
+
+.dataset-container{
+    position: relative;
+}
+
+.slider {
+    height: calc(100vh - (2rem + 40px));
+    width: var(--width);
+    border: 1px solid red;    
+    position: relative;
+    overflow: hidden;
+    mask-image: linear-gradient(
+        to bottom,
+        transparent,
+        #000 5% 95%,
+        transparent
+    );
+}
+
+
+.slider .list{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    border: none;
+}
+
+.slider .list .item{
+    width: var(--width);
+    height: var(--height);
+    position: absolute;
+    bottom: 100%;
+    animation: autoRun 5s linear infinite;
+    animation-delay: calc( (5s / var(--quantity)) * (var(--position) - 1)) !important;
+
+}
+
+
+.slider .list .item img{
+    /*300px*/
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+
+}
+
+
+@keyframes autoRun {
+	from{
+		bottom: 100%;
+	}to{
+		bottom: calc(var(--height) * -1);
+	}
+}
+
+.slider[reverse="true"] .item{
+	animation: reversePlay 5s linear infinite;
+    /*animation-play-state: paused;*/
+}
+
+@keyframes reversePlay{
+	from{
+		bottom: calc(var(--height) * -1);
+	}to{
+		bottom: 100%;
+	}
+}
+
+.row-container {
+    display: flex;
+    justify-content: space-between; /* This will align items at the start and end */
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
