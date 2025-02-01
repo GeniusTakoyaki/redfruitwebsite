@@ -36,37 +36,62 @@ window.addEventListener('DOMContentLoaded', event => {
 
 console.log("JavaScript is working!");
 
+document.addEventListener('DOMContentLoaded', () => {
+  // Add the 'animated' class to the curtain after a short delay
+  setTimeout(() => {
+    const curtain = document.querySelector('.curtain');
+    curtain.classList.add('animated');
+  }, 250); // Delay to ensure the curtain is visible before animation starts
+});
 
-/* animation-delay: calc( (1s / var(--quantity)) * (var(--position) - 1)) !important;
-document.addEventListener('DOMContentLoaded', function () {
-  setTimeout(function () {
-    // Select all `.item` elements inside a `.slider` that has reverse="true"
-    const items = document.querySelectorAll('.slider[reverse="true"] .item');
-    
-    // Loop through each selected item and update animation-play-state
-    items.forEach(item => {
-      item.style.animationPlayState = 'running';
-    });
-  }, 1905); // Start animation after 2 seconds
-}); */
 
-/* window.addEventListener("DOMContentLoaded", function () {
-  // Select all columns with the class "column-class"
-  const columns = document.querySelectorAll(".column-class");
+document.addEventListener('DOMContentLoaded', () => {
+  // Select the .xtra-layer element
+  const container = document.querySelector('.rotating-container');
+  const layer = document.querySelector('.xtra-layer');
+  const textName = document.getElementById('frontpage-name');
+  const textDesc = document.getElementById('frontpage-description');
+  const frontButtons = document.getElementById('frontpage-buttons')
 
-  // Loop through each column
-  columns.forEach((column) => {
-      const clone = column.cloneNode(true); // Clone the entire column
-      const columnHeight = column.offsetHeight; // Get the height of the original column
+  // Ensure the layer exists before proceeding
+  if (layer) {
+    // Function to handle the transition end event
+    const handleTransitionEnd = (event) => {
+      // Check if the transition is for the 'transform' property
+      if (event.propertyName === 'transform') {
+        // Add the 'animated' class to the body to trigger opacity changes
+        document.body.classList.add('animated');
 
-      // Position the clone above the original column
-      clone.style.position = "absolute"; // Ensure the clone is positioned absolutely
-      clone.style.top = `-${2 * columnHeight}px`; // Move it above by its full height
+        // Remove the event listener after it's triggered
+        layer.removeEventListener('transitionend', handleTransitionEnd);
+      }
+    };
 
-      // Append the clone to the parent of the original column
-      column.parentNode.appendChild(clone);
-  });
+    // Attach the transitionend event listener to the layer
+    layer.addEventListener('transitionend', handleTransitionEnd);
 
-  console.log(`Number of columns: ${columns.length}`); // Log the number of columns
-}); */
+    // Start the animation by adding the 'animated' class to the layer
+    setTimeout(() => {
+      layer.classList.add('animated');
 
+    }, 250); // Delay to ensure visibility before animation starts
+
+    setTimeout(() => {
+      container.classList.add('animated');
+    }, 500);
+
+  
+  // Add the 'visible' class after a delay to trigger the animation
+    setTimeout(() => {
+      textName.classList.add('visible');
+    }, 1200); // Delay before animation starts
+
+    setTimeout(() => {
+      textDesc.classList.add('visible');
+    }, 1700); // Delay before animation starts
+
+    setTimeout(() => {
+      frontButtons.classList.add('visible');
+    }, 1900); // Delay before animation starts
+  }
+});
