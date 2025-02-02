@@ -36,6 +36,8 @@ window.addEventListener('DOMContentLoaded', event => {
 
 console.log("JavaScript is working!");
 
+
+
 document.addEventListener('DOMContentLoaded', () => {
   // Add the 'animated' class to the curtain after a short delay
   setTimeout(() => {
@@ -77,21 +79,35 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 250); // Delay to ensure visibility before animation starts
 
     setTimeout(() => {
-      container.classList.add('animated');
+      if (container) {
+        container.classList.add('animated');
+        document.body.classList.add('color-change')
+      }
+      
     }, 500);
 
   
   // Add the 'visible' class after a delay to trigger the animation
     setTimeout(() => {
-      textName.classList.add('visible');
+      if (textName){
+        textName.classList.add('visible');
+      }
+      
     }, 1200); // Delay before animation starts
 
     setTimeout(() => {
-      textDesc.classList.add('visible');
+      if (textDesc){
+        textDesc.classList.add('visible');
+      }
+
     }, 1700); // Delay before animation starts
 
     setTimeout(() => {
-      frontButtons.classList.add('visible');
+      if (frontButtons){
+        frontButtons.classList.add('visible');
+      }
     }, 1900); // Delay before animation starts
   }
 });
+
+

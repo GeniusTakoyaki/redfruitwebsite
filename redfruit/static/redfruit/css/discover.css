@@ -1,19 +1,25 @@
 body {
-    overflow-y: auto !important;
+    background: linear-gradient(to left, #461220 20%, #b23a48 100%);
 }
+
+
+.curtain {
+    overflow-y: auto;
+}
+
 
 .dataset-container{
     position: relative;
 }
 
 .slider {
-    height: calc(100vh - (2rem + 40px));
-    width: var(--width);
-    border: 1px solid red;    
+    height:  var(--height);
+    width: 100vw;
+  
     position: relative;
     overflow: hidden;
     mask-image: linear-gradient(
-        to bottom,
+        to left,
         transparent,
         #000 5% 95%,
         transparent
@@ -24,7 +30,7 @@ body {
 .slider .list{
     display: flex;
     flex-direction: column;
-    height: 100%;
+    width: 100%;
     margin: 0;
     padding: 0;
     border: none;
@@ -34,47 +40,72 @@ body {
     width: var(--width);
     height: var(--height);
     position: absolute;
-    bottom: 100%;
-    animation: autoRun 5s linear infinite;
-    animation-delay: calc( (5s / var(--quantity)) * (var(--position) - 1)) !important;
-
+    right: 100%;
+    animation: autoRun 15s linear infinite;
+    animation-delay: calc( (15s / var(--quantity)) * (var(--position) - 1)) !important;
 }
 
 
 .slider .list .item img{
     /*300px*/
-    width: 100%;
-    height: 100%;
+    height: 400px;
+    width: 600px;
     object-fit: cover;
-
+    
 }
 
 
 @keyframes autoRun {
 	from{
-		bottom: 100%;
+		right: 100%;
 	}to{
-		bottom: calc(var(--height) * -1);
+		right: calc(var(--width) * -1);
 	}
 }
 
-.slider[reverse="true"] .item{
-	animation: reversePlay 5s linear infinite;
-    /*animation-play-state: paused;*/
-}
 
-@keyframes reversePlay{
-	from{
-		bottom: calc(var(--height) * -1);
-	}to{
-		bottom: 100%;
-	}
-}
 
-.row-container {
+
+.welcome-container {
+    height: 100vh;
+
     display: flex;
-    justify-content: space-between; /* This will align items at the start and end */
-    width: 100%;
-    margin: 0;
-    padding: 0;
+    flex-direction: column;
+    justify-content: center; /* Centers content vertically */
+    align-items:flex-start;   /* Centers content horizontally */
+    margin: 60px;
+    padding-right: 100px;
+    padding-top: 100px;
+    }
+
+.welcome-text {
+    color: #fed0bb;
+}
+
+.welcome-description {
+    color: #fed0bb;
+}
+
+
+.xtra-layer {
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.65) url("/static/redfruit/assets/img/about-background.jpg");
+    background-size: cover; /* Ensures the image covers the entire container */
+    background-position: center; /* Centers the image */
+    background-repeat: no-repeat;
+    background-blend-mode: darken;
+    background-attachment: fixed;
+}
+
+#mainNav{
+    box-shadow: none !important;
+    background: transparent;
+}
+
+.nav-link{
+    color: #fed0bb !important;
+}
+
+.navbar-brand{
+    color: #fed0bb !important;
 }

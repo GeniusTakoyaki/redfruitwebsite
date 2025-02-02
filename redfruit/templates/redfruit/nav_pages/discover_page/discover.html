@@ -10,46 +10,45 @@
 {% endblock %}
 {% block content %}
 
-<div class='dataset-container'>
-  <div class="row-container">
-    <div class="slider" style="
-      --width: 300px;
-      --height: calc(100vh - (2rem + 40px));
-      --quantity: 4;
-      ">
-      <div class="list">
-        <div class="item" style="--position: 1"><img src="{% static 'redfruit/assets/img/sample_tomato/tomato1.jpeg' %}" alt="Tomato Image"></div>
-        <div class="item" style="--position: 2"><img src="{% static 'redfruit/assets/img/sample_tomato/tomato2.jpeg' %}" alt="Tomato Image"></div>
-        <div class="item" style="--position: 3"><img src="{% static 'redfruit/assets/img/sample_tomato/tomato3.jpeg' %}" alt="Tomato Image"></div>
-        <div class="item" style="--position: 4"><img src="{% static 'redfruit/assets/img/sample_tomato/tomato4.jpeg' %}" alt="Tomato Image"></div>
-        <div class="item" style="--position: 5"><img src="{% static 'redfruit/assets/img/sample_tomato/tomato5.jpeg' %}" alt="Tomato Image"></div>
-        <div class="item" style="--position: 6"><img src="{% static 'redfruit/assets/img/sample_tomato/tomato6.jpeg' %}" alt="Tomato Image"></div>
-        
-      </div>
-    </div>
+<div class="welcome-container">
+  <h1 class="welcome-text">
+    Welcome to RedFruit: AI
+  </h1>
+  <p class="welcome-description">
+    Redfruit Classifier, an AI-powered web application designed to accurately distinguish between red fruits like apples and tomatoes using deep learning. Our cutting-edge model leverages advanced neural networks to analyze images and classify them with high precision. Whether you're a researcher, a farmer, or simply curious about fruit identification, our platform provides a seamless and efficient way to differentiate between these visually similar fruits. Experience the power of artificial intelligence in fruit classification—fast, reliable, and easy to use.
+  </p>
+</div>
 
-    <div class="slider" reverse="true" style="
-      --width: 300px;
-      --height: calc(100vh - (2rem + 40px));
-      --quantity: 4;
-      " id="slider2">
-      <div class="list">
-        <div class="item" style="--position: 1"><img src="{% static 'redfruit/assets/img/sample_apple/apple1.jpg' %}" alt="Apple Image"></div>
-        <div class="item" style="--position: 2"><img src="{% static 'redfruit/assets/img/sample_apple/apple2.jpeg' %}" alt="Apple Image"></div>
-        <div class="item" style="--position: 3"><img src="{% static 'redfruit/assets/img/sample_apple/apple3.jpeg' %}" alt="Apple Image"></div>
-        <div class="item" style="--position: 4"><img src="{% static 'redfruit/assets/img/sample_apple/apple4.jpeg' %}" alt="Apple Image"></div>
-        <div class="item" style="--position: 5"><img src="{% static 'redfruit/assets/img/sample_apple/apple5.jpeg' %}" alt="Apple Image"></div>
-        <div class="item" style="--position: 6"><img src="{% static 'redfruit/assets/img/sample_apple/apple6.jpeg' %}" alt="Apple Image"></div>
-        
-      </div>
+
+
+<div class='dataset-container'>
+  <div class="slider" style="
+    --width: calc(100vw - (2rem + 40px));
+    --height: 300px;
+    --quantity: 4;
+    ">
+    <div class="list">
+      <div class="item" style="--position: 1"><img src="{% static 'redfruit/assets/img/sample_tomato/tomato1.jpeg' %}" alt="Tomato Image"></div>
+      <div class="item" style="--position: 2"><img src="{% static 'redfruit/assets/img/sample_tomato/tomato2.jpeg' %}" alt="Tomato Image"></div>
+      <div class="item" style="--position: 3"><img src="{% static 'redfruit/assets/img/sample_tomato/tomato3.jpeg' %}" alt="Tomato Image"></div>
+      <div class="item" style="--position: 4"><img src="{% static 'redfruit/assets/img/sample_tomato/tomato4.jpeg' %}" alt="Tomato Image"></div>
+      <div class="item" style="--position: 5"><img src="{% static 'redfruit/assets/img/sample_tomato/tomato5.jpeg' %}" alt="Tomato Image"></div>
+      <div class="item" style="--position: 6"><img src="{% static 'redfruit/assets/img/sample_tomato/tomato6.jpeg' %}" alt="Tomato Image"></div>
+      <div class="item" style="--position: 7"><img src="{% static 'redfruit/assets/img/sample_apple/apple1.jpg' %}" alt="Apple Image"></div>
+      <div class="item" style="--position: 8"><img src="{% static 'redfruit/assets/img/sample_apple/apple2.jpeg' %}" alt="Apple Image"></div>
+      <div class="item" style="--position: 9"><img src="{% static 'redfruit/assets/img/sample_apple/apple3.jpeg' %}" alt="Apple Image"></div>
+      <div class="item" style="--position: 10"><img src="{% static 'redfruit/assets/img/sample_apple/apple4.jpeg' %}" alt="Apple Image"></div>
+      <div class="item" style="--position: 11"><img src="{% static 'redfruit/assets/img/sample_apple/apple5.jpeg' %}" alt="Apple Image"></div>
+      <div class="item" style="--position: 12"><img src="{% static 'redfruit/assets/img/sample_apple/apple6.jpeg' %}" alt="Apple Image"></div>
     </div>
   </div>
-  
+ 
 </div>
 
 
 
 <!-- <img src="{% static 'redfruit/assets/img/sample_apple/apple6.jpeg' %}" alt="Apple Image"> -->
 
+<h1> Extra spaces</h1>
 
 {% endblock %}
