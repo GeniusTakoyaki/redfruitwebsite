@@ -34,9 +34,6 @@ window.addEventListener('DOMContentLoaded', event => {
 });
 */
 
-console.log("JavaScript is working!");
-
-
 
 document.addEventListener('DOMContentLoaded', () => {
   // Add the 'animated' class to the curtain after a short delay
@@ -108,6 +105,85 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }, 1900); // Delay before animation starts
   }
+});
+
+
+document.addEventListener("DOMContentLoaded", function () {
+  const whySection = document.querySelector(".reason-container");
+  const content = document.querySelector(".reason-container .reason-content");
+  const curtain = document.querySelector(".curtain");
+
+  if (!curtain) {
+    console.error(".curtain element not found!");
+    return;
+  }
+
+  // Scroll event listener for the .curtain element
+  curtain.addEventListener("scroll", function () {
+
+
+    // Get the bounding rectangle of the section relative to the viewport
+    const sectionRect = whySection.getBoundingClientRect();
+    const curtainRect = curtain.getBoundingClientRect();
+
+    // Calculate the center of the curtain's visible area
+    const curtainCenterY = curtainRect.height / 2;
+
+    const sectionCenterY = sectionRect.top + sectionRect.height / 2;
+
+    // Determine the section's center position relative to the curtain's center
+    const distanceFromCurtainCenter = sectionCenterY - curtainCenterY;
+
+    scrollPosition = curtain.scrollTop; // Update scroll position
+
+  // Recalculate and apply the new dynamic top value
+    const dynamicTop = curtainCenterY + scrollPosition - content.offsetHeight / 2;
+    
+    console.log(dynamicTop)
+
+    console.log(curtainCenterY)
+    let opacity = 0;
+    let fixed = false;
+    const currentStyles = content.style.cssText;
+    
+    if (distanceFromCurtainCenter < 0) {
+      opacity = 1;
+      fixed = true;
+      content.style.cssText = `
+        ${currentStyles};
+        opacity: ${opacity};
+        position: ${fixed ? 'absolute' : 'relative'};
+        top: ${fixed ? `${dynamicTop}px` : 'auto'};
+        transform: scale(${1});
+        display: flex;
+        flex-direction: column;
+        justify-content: center; 
+        align-items: center;  
+        margin: 0 120px;
+        text-align: center;`; 
+        return;
+    } else {
+      scale = Math.max(0.5, 1 - distanceFromCurtainCenter / (curtainRect.height / 2));
+      opacity = Math.max(
+        0.2,
+        1 - distanceFromCurtainCenter / (curtainRect.height / 2)
+      );
+    }
+
+    // Apply styles to the content
+    content.style.cssText = currentStyles + `; opacity: ${opacity}; position: ${fixed ? 'absolute' : 'relative'}; top: ${fixed ? `${dynamicTop}px` : 'auto'}; transform: scale(${scale});`;
+    console.log(content.style.position)
+
+  });
+
+  // Click event listener to log current opacity and position
+  document.addEventListener("click", function () {
+    const currentOpacity = window.getComputedStyle(content).opacity;
+    console.log("Current Opacity:", currentOpacity);
+
+    const position = content.getBoundingClientRect();
+    console.log("Content Position:", position);
+  });
 });
 
 

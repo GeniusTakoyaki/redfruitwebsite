@@ -115,8 +115,12 @@ body {
     flex-direction: column;
     justify-content: center; /* Centers content vertically */
     align-items: center;   /* Centers content horizontally */
-    margin: 120px;
     text-align: center;
+}
+
+.reason-content {
+    transform: scale(1);
+    margin: 0 120px;
 }
 
 .reason-container h1{
@@ -125,4 +129,14 @@ body {
 
 .reason-container p {
     color: #fed0bb !important;
+}
+
+.extra-info {
+    height: 200%;
+    width: 100vw;
+    background-color: #fed0bb;
+}
+
+.dummy-space {
+    height: 50vh;
 }
