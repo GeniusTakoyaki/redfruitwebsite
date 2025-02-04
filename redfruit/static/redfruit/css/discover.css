@@ -140,3 +140,423 @@ body {
 .dummy-space {
     height: 50vh;
 }
+
+
+
+
+
+
+
+
+
+.technologies-container{
+    display: flex;
+    height: 150vh;
+    width: 100vw;
+    background-color: #fed0bb;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Material Shadow Mixin */
+.walkthrough {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.23), 0 10px 40px rgba(0, 0, 0, 0.19);
+    background: linear-gradient(to right bottom, #461220 100%, #b23a48 35%);
+    border-radius: 15px;
+    display: none;
+    flex-direction: column;
+    flex: 0 0 auto;
+    font-size: 14px;
+    height: 464px;
+    overflow: hidden;
+    transition: opacity 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    width: 280px;
+    z-index: 1000;
+  }
+  
+  .walkthrough.show {
+    display: flex;
+    opacity: 0;
+    transform: translateY(72px);
+  }
+  
+  .walkthrough.reveal {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  .walkthrough .walkthrough-body {
+    align-items: center;
+    display: flex;
+    flex: 1;
+    text-align: center;
+    position: relative; /* Ensure child elements are positioned relative to this container */
+  }
+  
+  .walkthrough .walkthrough-body .prev-screen,
+  .walkthrough .walkthrough-body .next-screen {
+    align-self: stretch;
+    background: none;
+    border: 0;
+    margin-top: 40px;
+    color: rgba(255, 255, 255, 0.25);
+    cursor: pointer;
+    flex: 0 0 auto;
+    font-size: 24px;
+    opacity: 1;
+    outline: none;
+    padding: 16px;
+    transform: scale(1);
+    transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), color 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), opacity 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    z-index: 1000;
+  }
+  
+  .walkthrough .walkthrough-body .prev-screen:hover,
+  .walkthrough .walkthrough-body .next-screen:hover,
+  .walkthrough .walkthrough-body .prev-screen:active,
+  .walkthrough .walkthrough-body .next-screen:active {
+    color: white;
+    transform-origin: center;
+    transform: scale(1.25);
+  }
+  
+  .walkthrough .walkthrough-body .prev-screen:disabled,
+  .walkthrough .walkthrough-body .next-screen:disabled {
+    opacity: 0;
+  }
+  
+  .walkthrough .walkthrough-body .prev-screen {
+    order: 1;
+  }
+  
+  .walkthrough .walkthrough-body .next-screen {
+    order: 3;
+  }
+  
+  .walkthrough .walkthrough-body .screens {
+    flex: 1;
+    align-self: stretch;
+    position: relative;
+    margin: 0 -16px;
+    padding: 0;
+    order: 2;
+  }
+  
+  .walkthrough .walkthrough-body .screens .screen {
+    position: absolute;
+    list-style-type: none;
+  }
+  
+  .walkthrough .walkthrough-body .media {
+    background: rgba(255, 255, 255, 0.25);
+    border-radius: 132px;
+    height: 132px;
+    margin: 32px auto;
+    width: 132px;
+  }
+  
+  .walkthrough .walkthrough-body h3 {
+    font-size: 15px;
+    line-height: 1.4em;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: #fed0bb;
+  }
+  
+  .walkthrough .walkthrough-body p {
+    line-height: 1.6em;
+    font-size: 13px;
+    padding-top: 20px;
+    margin-left: 35px;
+    margin-right: 35px;
+    color: rgba(255, 255, 255, 0.8);
+  }
+  
+  .walkthrough .walkthrough-pagination {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    margin-top: 24px;
+  }
+  
+  .walkthrough .walkthrough-pagination .dot {
+    background: rgba(0, 0, 0, 0.25);
+    border-radius: 8px;
+    height: 8px;
+    margin: 0 4px;
+    transform: scale(0.75);
+    transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), background 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    width: 8px;
+  }
+  
+  .walkthrough .walkthrough-pagination .dot.active {
+    background: white;
+    transform: scale(1);
+    transition-delay: 0.4s;
+  }
+  
+
+  
+ 
+    
+  /* Animation Styles */
+  .walkthrough .screens {
+    margin: 0;
+  }
+  
+  .walkthrough .screens .media .status-badge {
+    left: 136px;
+    opacity: 0;
+    position: absolute;
+    top: 104px;
+    transform: scale(0);
+    transition: opacity 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    transition-delay: 0.6s;
+  }
+  
+  .walkthrough .screens .media .status-badge i {
+    display: inline;
+  }
+  
+  
+  .walkthrough .screens .media .icon {
+    position: absolute;
+    opacity: 0;
+    transform: translateY(-30px);
+    transition: opacity 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    width: 132px;
+    left: 48px;
+    top: 32px;
+  }
+
+  .walkthrough .screens .media.logo .python-logo {
+    margin-top: 20px;
+  }
+
+  
+  /* Blue part of the Python logo */
+  .python-logo .blue-snake {
+    position: relative;
+    width: 80px;
+    height: 80px;
+    opacity: 0;
+    top: 24px;
+    transform: translate(-60px, -60px);
+    transition: opacity 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+
+  }
+  
+  /* Yellow part of the Python logo */
+  .python-logo .yellow-snake {
+    position: relative;
+    width: 80px;
+    height: 80px;
+    opacity: 0;
+    top: -56px;
+    transform: translate(60px, 60px);
+    transition: opacity 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  }
+
+  .walkthrough .screens .media.books .opencv-logo .cv {
+    transform: translate(-45px, -45px) scale(0.5);
+    transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  }
+
+  .walkthrough .screens .media.books .opencv-logo .cv:nth-of-type(2) {
+    transform: translate(-104px, 49px) scale(0.5);
+    transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  }
+  
+  .walkthrough .screens .media.books .opencv-logo .cv:nth-of-type(3) {
+    transform: translate(17px, 49px) scale(0.5);
+    transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  }
+
+  
+  .walkthrough .screens .media.bars .icon {
+    transform: translate(40px, 20px);
+  }
+  
+  .walkthrough .screens .media.bars .icon:nth-of-type(2) {
+    transform: scale(0.25);
+    transform-origin: 30% 54%;
+  }
+  
+  .walkthrough .screens .media.bars .icon:nth-of-type(3) {
+    transform: scale(0.25);
+    transform-origin: 30% 40%;
+  }
+  
+  .walkthrough .screens .media.bars .icon:nth-of-type(4) {
+    transform: scale(0.25);
+    transform-origin: 30% 26%;
+  }
+  
+  .walkthrough .screens .media.files .icon {
+    transform: translate(40px, 20px);
+  }
+  
+  .walkthrough .screens .media.comm .icon {
+    transform: scale(0.25);
+    transform-origin: 29% 73%;
+  }
+  
+  .walkthrough .screens .media.comm .icon:nth-child(2) {
+    transform-origin: 66% 85%;
+  }
+  
+  .walkthrough .screens .screen {
+    opacity: 0;
+    position: absolute;
+    transform: translateX(-72px);
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  }
+  
+  .walkthrough .screens .screen.active {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+    transition-delay: 0.4s;
+  }
+  
+  .walkthrough .screens .screen.active ~ .screen {
+    opacity: 0;
+    transform: translateX(72px);
+  }
+  
+  .walkthrough .screens .screen.active .media .status-badge {
+    opacity: 1;
+    transform: scale(1.75);
+  }
+  
+  .walkthrough .screens .screen.active .media.logo .python-logo .blue-snake{
+    opacity: 1;
+    transform: translate(0, 0);
+
+    transition-delay: 0.6s;
+  }
+
+  .walkthrough .screens .screen.active .media.logo .python-logo .yellow-snake{
+    opacity: 1;
+    transform: translate(0, 0);
+    transition-delay: 0.6s;
+  }
+  
+  .walkthrough .screens .screen.active .media.logo .status-badge {
+    transition-delay: 1s;
+  }
+  
+  .walkthrough .screens .screen.active .media.books .opencv-logo .cv {
+    opacity: 1;
+    transform: translate(-45px, 18px);
+    transition-delay: 0.6s;
+    width: 90px;
+    position: absolute;
+  }
+
+  
+  
+  .walkthrough .screens .screen.active .media.books .opencv-logo .cv:nth-child(2) {
+    transition-delay: 0.725s;
+  }
+  
+  .walkthrough .screens .screen.active .media.books .opencv-logo .cv:nth-child(3) {
+    transition-delay: 0.85s;
+  }
+  
+  .walkthrough .screens .screen.active .media.books .opencv-logo .status-badge {
+    transition-delay: 1.4s;
+  }
+  
+  .walkthrough .screens .screen.active .media.bars .icon {
+    opacity: 1;
+    transform: translate(0) scale(1);
+    transition-delay: 0.6s;
+  }
+  
+  .walkthrough .screens .screen.active .media.bars .icon:nth-child(2) {
+    transition-delay: 1.05s;
+  }
+  
+  .walkthrough .screens .screen.active .media.bars .icon:nth-child(3) {
+    transition-delay: 0.925s;
+  }
+  
+  .walkthrough .screens .screen.active .media.bars .icon:nth-child(4) {
+    transition-delay: 0.8s;
+  }
+  
+  .walkthrough .screens .screen.active .media.files .icon {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.9s;
+  }
+  
+  .walkthrough .screens .screen.active .media.files .icon:nth-child(3) {
+    transition-delay: 0.8s;
+  }
+  
+  .walkthrough .screens .screen.active .media.files .icon:nth-child(2) {
+    transition-delay: 0.7s;
+  }
+  
+  .walkthrough .screens .screen.active .media.files .icon:nth-child(1) {
+    transition-delay: 0.6s;
+  }
+  
+  .walkthrough .screens .screen.active .media.files .status-badge {
+    transition-delay: 1.6s;
+  }
+  
+  .walkthrough .screens .screen.active .media.comm .icon {
+    opacity: 1;
+    transform: scale(1);
+    transition-delay: 0.6s;
+  }
+  
+  .walkthrough .screens .screen.active .media.comm .icon:nth-child(2) {
+    transition-delay: 0.8s;
+  }
+  
+  .walkthrough .screens .screen.active .media.comm .status-badge {
+    transition-delay: 1.6s;
+  }
+  
+  /* Styling for the arrow buttons */
+  .arrow-btn {
+    position: relative;
+    transform: scale(1);
+    background-color: rgba(70, 18, 32, 0.35); /* Semi-transparent white */
+    color: #fed0bb !important; /* White icon */
+    border: none;
+    border-radius: 50%; /* Circular shape */
+    width: 50px; /* Slightly larger size */
+    height: 50px; /* Slightly larger size */
+    font-size: 24px; /* Larger icon size */
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth hover effect */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10; /* Ensure it's above other elements */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add a shadow for better visibility */
+    margin-left: 50px;
+    margin-right: 50px;
+  }
+  
+  .arrow-btn:hover {
+    transform: scale(1.25); /* Slightly enlarge on hover */
+    background-color: rgba(70, 18, 32, 1);
+  }
+  
+  .prev-screen {
+    left: 10px; /* Position on the left */
+  }
+  
+  .next-screen {
+    right: 10px; /* Position on the right */
+  }
+
+  
+
+  #technology-cards {
+  }

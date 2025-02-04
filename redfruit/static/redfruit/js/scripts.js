@@ -114,7 +114,6 @@ document.addEventListener("DOMContentLoaded", function () {
   const curtain = document.querySelector(".curtain");
 
   if (!curtain) {
-    console.error(".curtain element not found!");
     return;
   }
 
@@ -139,9 +138,6 @@ document.addEventListener("DOMContentLoaded", function () {
   // Recalculate and apply the new dynamic top value
     const dynamicTop = curtainCenterY + scrollPosition - content.offsetHeight / 2;
     
-    console.log(dynamicTop)
-
-    console.log(curtainCenterY)
     let opacity = 0;
     let fixed = false;
     const currentStyles = content.style.cssText;
@@ -169,22 +165,87 @@ document.addEventListener("DOMContentLoaded", function () {
         1 - distanceFromCurtainCenter / (curtainRect.height / 2)
       );
     }
-
     // Apply styles to the content
     content.style.cssText = currentStyles + `; opacity: ${opacity}; position: ${fixed ? 'absolute' : 'relative'}; top: ${fixed ? `${dynamicTop}px` : 'auto'}; transform: scale(${scale});`;
-    console.log(content.style.position)
 
-  });
-
-  // Click event listener to log current opacity and position
-  document.addEventListener("click", function () {
-    const currentOpacity = window.getComputedStyle(content).opacity;
-    console.log("Current Opacity:", currentOpacity);
-
-    const position = content.getBoundingClientRect();
-    console.log("Content Position:", position);
   });
 });
 
 
 
+document.addEventListener('DOMContentLoaded', () => {
+  const walkthrough = {
+    index: 0,
+
+    nextScreen() {
+      if (this.index < this.indexMax()) {
+        this.index++;
+        this.updateScreen();
+      }
+    },
+
+    prevScreen() {
+      if (this.index > 0) {
+        this.index--;
+        this.updateScreen();
+      }
+    },
+
+    updateScreen() {
+      this.reset();
+      this.goTo(this.index);
+      this.setBtns();
+    },
+
+    setBtns() {
+      const prevBtn = document.querySelector('.prev-screen');
+      const nextBtn = document.querySelector('.next-screen');
+
+      if (this.index === 0) {
+        prevBtn.disabled = true;
+        nextBtn.disabled = false;
+      } else if (this.index === this.indexMax()) {
+        prevBtn.disabled = false;
+        nextBtn.disabled = true;
+      } else {
+        prevBtn.disabled = false;
+        nextBtn.disabled = false;
+      }
+    },
+
+    goTo(index) {
+      document.querySelectorAll('.screen')[index].classList.add('active');
+      document.querySelectorAll('.dot')[index].classList.add('active');
+    },
+
+    reset() {
+      document.querySelectorAll('.screen, .dot').forEach(el => el.classList.remove('active'));
+    },
+
+    indexMax() {
+      return document.querySelectorAll('.screen').length - 1;
+    },
+  };
+
+  // Event listeners for arrow buttons
+  document.querySelector('.next-screen').addEventListener('click', () => walkthrough.nextScreen());
+  document.querySelector('.prev-screen').addEventListener('click', () => walkthrough.prevScreen());
+
+  // Initialize the walkthrough
+  walkthrough.updateScreen();
+
+  // Use keyboard navigation with e.key instead of e.which
+  document.addEventListener('keydown', (e) => {
+    switch (e.key) {
+      case 'ArrowLeft': // Left arrow key
+        walkthrough.prevScreen();
+        break;
+      case 'ArrowRight': // Right arrow key
+        walkthrough.nextScreen();
+        break;
+      default:
+        return;
+    }
+    e.preventDefault(); // Prevent default behavior (optional)
+  });
+});

@@ -7,6 +7,7 @@
 {% block styles %}
 <link href="{% static 'redfruit/css/styles.css' %}?v=1.0" rel="stylesheet" />
 <link href="{% static 'redfruit/css/discover.css' %}?v=1.0" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 {% endblock %}
 {% block content %}
 
@@ -29,6 +30,95 @@
 </div>
 
 <div class="dummy-space"></div>
+  
+<div class="technologies-container">
+  <div class='row align-items-center' id="technology-cards">
+
+    <button class="arrow-btn prev-screen">
+      <i class="fas fa-chevron-left" id="left-button"></i>
+    </button>
+    
+
+
+    <div class="walkthrough show reveal">
+      <div class="walkthrough-pagination">
+        <a class="dot active"></a>
+        <a class="dot"></a>
+        <a class="dot"></a>
+        <a class="dot"></a>
+        <a class="dot"></a>
+      </div>
+      <div class="walkthrough-body">
+        <ul class="screens animate">
+          <li class="screen active">
+            <div class="media logo">
+              <div class="python-logo">
+                <img class="blue-snake" src="{% static 'redfruit/assets/img/logos/blue-snake.png' %}" alt="Python">
+                <img class="yellow-snake" src="{% static 'redfruit/assets/img/logos/yellow-snake.png' %}" alt="Python">
+              </div>
+            </div>
+            <h3>
+              Python
+            </h3>
+            <p>Python is a simple and versatile programming language. It is widely used for web development, data analysis, and machine learning. Its readability and large library ecosystem make it a favorite among developers.</p>
+          </li>
+          <li class="screen">
+            <div class="media books">
+              <div class="opencv-logo">
+                <img class="cv" src="{% static 'redfruit/assets/img/logos/opencv-up.png' %}" alt="OpenCV">
+                <img class="cv" src="{% static 'redfruit/assets/img/logos/opencv-left.png' %}" alt="OpenCV">
+                <img class="cv" src="{% static 'redfruit/assets/img/logos/opencv-right.png' %}" alt="OpenCV">
+              </div>
+            </div>
+            <h3>
+              OpenCV
+            </h3>
+            <p>OpenCV is a library for computer vision tasks. It provides tools for image and video processing, such as object detection and face recognition, and is widely used in robotics and medical imaging.</p>
+          </li>
+          <li class="screen">
+            <div class="media bars">
+              <img class="icon" src="https://s3.amazonaws.com/jebbles-codepen/bar_icon_axis.png" alt="Bar Icon Axis">
+              <img class="icon" src="https://s3.amazonaws.com/jebbles-codepen/bar_icon_3.png" alt="Bar Icon 3">
+              <img class="icon" src="https://s3.amazonaws.com/jebbles-codepen/bar_icon_2.png" alt="Bar Icon 2">
+              <img class="icon" src="https://s3.amazonaws.com/jebbles-codepen/bar_icon_1.png" alt="Bar Icon 1">
+            </div>
+            <h3>
+              Pytorch
+            </h3>
+            <p>PyTorch is a flexible tool for building machine learning models. It supports dynamic changes during execution and is popular in research and industries like computer vision and natural language processing.</p>
+          </li>
+          <li class="screen">
+            <div class="media files">
+              <img class="icon" src="https://s3.amazonaws.com/jebbles-codepen/file_icon_1.png" alt="File Icon 1">
+              <img class="icon" src="https://s3.amazonaws.com/jebbles-codepen/file_icon_2.png" alt="File Icon 2">
+              <img class="icon" src="https://s3.amazonaws.com/jebbles-codepen/file_icon_3.png" alt="File Icon 3">
+              <img class="icon" src="https://s3.amazonaws.com/jebbles-codepen/file_icon_4.png" alt="File Icon 4">
+            </div>
+            <h3>
+              Django
+            </h3>
+            <p>Django is a Python framework for fast and secure web development. It includes features like authentication and database management, helping developers build scalable websites quickly and efficiently.</p>
+          </li>
+          <li class="screen">
+            <div class="media comm">
+              <img class="icon" src="https://s3.amazonaws.com/jebbles-codepen/comm_icon_1.png" alt="Comm Icon 1">
+              <img class="icon" src="https://s3.amazonaws.com/jebbles-codepen/comm_icon_2.png" alt="Comm Icon 2">
+            </div>
+            <h3>
+              Bootstrap
+            </h3>
+            <p>Bootstrap is a front-end framework for creating responsive websites. It offers pre-built components and a grid system to ensure designs adapt well to different screen sizes, making it ideal for modern web interfaces.</p>
+          </li>
+        </ul>
+        
+        </div>
+      </div>
+    <button class="arrow-btn next-screen">
+      <i class="fas fa-chevron-right" id="right-button"></i>
+    </button>
+  </div>
+</div>
+
 
 
 <div class="extra-info">
