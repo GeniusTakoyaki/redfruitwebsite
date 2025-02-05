@@ -373,27 +373,36 @@ body {
   }
 
   
-  .walkthrough .screens .media.bars .icon {
-    transform: translate(40px, 20px);
+  .walkthrough .screens .media.bars .pytorch-logo .pytorch {
+    opacity: 0;
+    position: relative;
+    transform: scale(1);
+    top: -104px;
+    left: -75px;
+    transition: opacity 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
   }
   
-  .walkthrough .screens .media.bars .icon:nth-of-type(2) {
-    transform: scale(0.25);
-    transform-origin: 30% 54%;
+  .walkthrough .screens .media.files .django-logo {
+    opacity: 0;
+    height: 80px;
+    width: 80px;
+    transition: opacity 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
   }
-  
-  .walkthrough .screens .media.bars .icon:nth-of-type(3) {
-    transform: scale(0.25);
-    transform-origin: 30% 40%;
+
+  .django-logo .d-django {
+    position: absolute;
+    height: inherit;
+    width: inherit;
+    transform: scale(0);
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
   }
-  
-  .walkthrough .screens .media.bars .icon:nth-of-type(4) {
-    transform: scale(0.25);
-    transform-origin: 30% 26%;
-  }
-  
-  .walkthrough .screens .media.files .icon {
-    transform: translate(40px, 20px);
+
+  .django-logo .j-django{
+    position: absolute;
+    height: inherit;
+    width: inherit;
+    transform: scale(0);
+    transition: transform 0.9s cubic-bezier(0.34, 1.56, 0.64, 1);
   }
   
   .walkthrough .screens .media.comm .icon {
@@ -467,45 +476,34 @@ body {
     transition-delay: 1.4s;
   }
   
-  .walkthrough .screens .screen.active .media.bars .icon {
+  .walkthrough .screens .screen.active .media.bars .pytorch-logo .pytorch {
     opacity: 1;
-    transform: translate(0) scale(1);
+    transform: scale(0.35);
     transition-delay: 0.6s;
   }
-  
-  .walkthrough .screens .screen.active .media.bars .icon:nth-child(2) {
-    transition-delay: 1.05s;
-  }
-  
-  .walkthrough .screens .screen.active .media.bars .icon:nth-child(3) {
-    transition-delay: 0.925s;
-  }
-  
-  .walkthrough .screens .screen.active .media.bars .icon:nth-child(4) {
-    transition-delay: 0.8s;
-  }
-  
-  .walkthrough .screens .screen.active .media.files .icon {
+
+
+.walkthrough .screens .screen.active .media.files .django-logo {
     opacity: 1;
-    transform: translateY(0);
     transition-delay: 0.9s;
-  }
+}
   
-  .walkthrough .screens .screen.active .media.files .icon:nth-child(3) {
-    transition-delay: 0.8s;
-  }
-  
-  .walkthrough .screens .screen.active .media.files .icon:nth-child(2) {
-    transition-delay: 0.7s;
-  }
-  
-  .walkthrough .screens .screen.active .media.files .icon:nth-child(1) {
-    transition-delay: 0.6s;
-  }
-  
-  .walkthrough .screens .screen.active .media.files .status-badge {
-    transition-delay: 1.6s;
-  }
+.walkthrough .screens .screen.active .media.files .django-logo .d-django {
+    top:60px;
+    left: 110px;
+    transform: scale(1);
+    transition-delay: 0.9s;
+}
+
+
+
+.walkthrough .screens .screen.active .media.files .django-logo .j-django {
+    top:60px;
+    left: 110px;
+    transform: scale(1);
+    transition-delay: 0.9s;
+}
+
   
   .walkthrough .screens .screen.active .media.comm .icon {
     opacity: 1;
