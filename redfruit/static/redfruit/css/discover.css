@@ -405,13 +405,15 @@ body {
     transition: transform 0.9s cubic-bezier(0.34, 1.56, 0.64, 1);
   }
   
-  .walkthrough .screens .media.comm .icon {
-    transform: scale(0.25);
-    transform-origin: 29% 73%;
-  }
-  
-  .walkthrough .screens .media.comm .icon:nth-child(2) {
-    transform-origin: 66% 85%;
+
+  /* Base styles for each logo layer */
+  .screens .screen .media.comm .bootstrap-logo .bootstrap {
+    opacity: 0;
+    width: 120px;
+    position: absolute;
+    transform: translate(-60px, -70px);
+    /* Apply the animation – adjust duration (e.g., 1s) and easing as needed */
+    transition: transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 1s cubic-bezier(0.34, 1.56, 0.64, 1);
   }
   
   .walkthrough .screens .screen {
@@ -505,19 +507,24 @@ body {
 }
 
   
-  .walkthrough .screens .screen.active .media.comm .icon {
+.screens .screen.active .media.comm .bootstrap-logo .bootstrap {
+    z-index: 30;
     opacity: 1;
-    transform: scale(1);
-    transition-delay: 0.6s;
+    transform: translate(-60px, 17px);
+    transition-delay: 1.2s;
   }
   
-  .walkthrough .screens .screen.active .media.comm .icon:nth-child(2) {
-    transition-delay: 0.8s;
-  }
-  
-  .walkthrough .screens .screen.active .media.comm .status-badge {
-    transition-delay: 1.6s;
-  }
+
+/* Delay each layer's animation so they fall sequentially */
+.screens .screen.active .media.comm .bootstrap-logo .bootstrap:nth-child(2) {
+  transition-delay: 0.9s;
+  z-index: 25;
+}
+
+.screens .screen.active .media.comm .bootstrap-logo .bootstrap:nth-child(3) {
+  transition-delay: 0.6s;
+  z-index: 20;
+}
   
   /* Styling for the arrow buttons */
   .arrow-btn {
