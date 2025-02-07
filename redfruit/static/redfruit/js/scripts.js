@@ -172,6 +172,115 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
+document.addEventListener("DOMContentLoaded", function () {
+  const tech_section = document.querySelector(".technologies-used-text-container");
+  const text = document.querySelector('.tech-text');
+  const curtain = document.querySelector(".curtain");
+
+  // Exit if any required element doesn't exist
+  if (!curtain || !text || !tech_section) {
+    console.warn("Required elements not found.");
+    return;
+  }
+
+  // Define the threshold for center alignment (adjust as needed)
+  const centerThreshold = 200;
+
+  // Scroll event listener for the .curtain element
+  curtain.addEventListener("scroll", function () {
+    // Get the bounding rectangle of the section relative to the viewport
+    const sectionRect = tech_section.getBoundingClientRect();
+    const curtainRect = curtain.getBoundingClientRect();
+
+    // Calculate the center of the curtain's visible area (viewport center)
+    const curtainCenterY = curtainRect.height / 2;
+
+    // Calculate the vertical center of the technologies-container
+    const sectionCenterY = sectionRect.top + sectionRect.height / 2;
+
+    // Determine the distance between the section's center and the curtain's center
+    const distanceFromCurtainCenter = sectionCenterY - curtainCenterY;
+
+    // Update scroll position
+    const scrollPosition = curtain.scrollTop;
+    const dynamicTop = curtainCenterY - text.offsetHeight / 2 + scrollPosition;
+    
+    // Check if the technologies-container is centered in the viewport
+    if (Math.abs(distanceFromCurtainCenter) <= centerThreshold) {
+      // Add the 'active' class
+      text.classList.add('active');
+
+      
+      text.style.position = "absolute";
+      text.style.top = `${dynamicTop}px`;
+
+    } else {
+      // Remove the 'active' class
+      text.classList.remove('active');
+      // Reset the position to avoid lingering styles
+      text.style.top = `${dynamicTop}px`;
+    }
+  });
+});
+
+
+
+
+document.addEventListener("DOMContentLoaded", function () {
+  const tech_section = document.querySelector(".technologies-container");
+  const technologyCards = document.getElementById('technology-cards');
+  const curtain = document.querySelector(".curtain");
+
+  // Exit if any required element doesn't exist
+  if (!curtain || !tech_section || !technologyCards) {
+    console.warn("Required elements not found.");
+    return;
+  }
+
+  // Define the threshold for center alignment (adjust as needed)
+  const centerThreshold = 200;
+
+  // Scroll event listener for the .curtain element
+  curtain.addEventListener("scroll", function () {
+    // Get the bounding rectangle of the section relative to the viewport
+    const sectionRect = tech_section.getBoundingClientRect();
+    const curtainRect = curtain.getBoundingClientRect();
+
+    // Calculate the center of the curtain's visible area (viewport center)
+    const curtainCenterY = curtainRect.height / 2;
+
+    // Calculate the vertical center of the technologies-container
+    const sectionCenterY = sectionRect.top + sectionRect.height / 2;
+
+    // Determine the distance between the section's center and the curtain's center
+    const distanceFromCurtainCenter = sectionCenterY - curtainCenterY;
+
+    // Update scroll position
+    const scrollPosition = curtain.scrollTop;
+    const dynamicTop = curtainCenterY - technologyCards.offsetHeight / 2 + scrollPosition;
+    // Check if the technologies-container is centered in the viewport
+    if (Math.abs(distanceFromCurtainCenter) <= centerThreshold) {
+      // Add the 'active' class
+      technologyCards.classList.add('active');
+
+      // Dynamically position the technologyCards at the center of the curtain
+      
+      technologyCards.style.position = "absolute";
+      technologyCards.style.top = `${dynamicTop}px`;
+
+    } else {
+      // Remove the 'active' class
+      technologyCards.classList.remove('active');
+      // Reset the position to avoid lingering styles
+      technologyCards.style.top = `${dynamicTop}px`;
+    }
+  });
+});
+
+
+
+
+
 
 document.addEventListener('DOMContentLoaded', () => {
   const walkthrough = {

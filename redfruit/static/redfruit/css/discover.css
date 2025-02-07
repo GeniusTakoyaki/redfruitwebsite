@@ -131,22 +131,10 @@ body {
     color: #fed0bb !important;
 }
 
-.extra-info {
-    height: 200%;
-    width: 100vw;
-    background-color: #fed0bb;
-}
 
 .dummy-space {
     height: 50vh;
 }
-
-
-
-
-
-
-
 
 
 .technologies-container{
@@ -382,27 +370,26 @@ body {
     transition: opacity 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
   }
   
-  .walkthrough .screens .media.files .django-logo {
-    opacity: 0;
+  .walkthrough .screens .media.files .d-django {
+    top:55px;
+    left: 110px;
+    position: absolute;
     height: 80px;
     width: 80px;
-    transition: opacity 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    transform: scale(0);
+    opacity: 0;
+    transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
   }
 
-  .django-logo .d-django {
+  .walkthrough .screens .media.files .j-django{
+    top:55px;
+    left: 110px;
     position: absolute;
-    height: inherit;
-    width: inherit;
+    height: 80px;
+    width: 80px;
     transform: scale(0);
-    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-  }
-
-  .django-logo .j-django{
-    position: absolute;
-    height: inherit;
-    width: inherit;
-    transform: scale(0);
-    transition: transform 0.9s cubic-bezier(0.34, 1.56, 0.64, 1);
+    opacity: 0;
+    transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
   }
   
 
@@ -413,7 +400,7 @@ body {
     position: absolute;
     transform: translate(-60px, -70px);
     /* Apply the animation – adjust duration (e.g., 1s) and easing as needed */
-    transition: transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 1s cubic-bezier(0.34, 1.56, 0.64, 1);
+    transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
   }
   
   .walkthrough .screens .screen {
@@ -484,26 +471,19 @@ body {
     transition-delay: 0.6s;
   }
 
-
-.walkthrough .screens .screen.active .media.files .django-logo {
+ 
+.walkthrough .screens .screen.active .media.files .d-django {
     opacity: 1;
-    transition-delay: 0.9s;
-}
-  
-.walkthrough .screens .screen.active .media.files .django-logo .d-django {
-    top:60px;
-    left: 110px;
     transform: scale(1);
     transition-delay: 0.9s;
 }
 
 
 
-.walkthrough .screens .screen.active .media.files .django-logo .j-django {
-    top:60px;
-    left: 110px;
+.walkthrough .screens .screen.active .media.files .j-django {
     transform: scale(1);
-    transition-delay: 0.9s;
+    opacity: 1;
+    transition-delay: 1.2s;
 }
 
   
@@ -561,7 +541,64 @@ body {
     right: 10px; /* Position on the right */
   }
 
-  
+#technology-cards {
+  opacity: 0; /* Start hidden */
+  transform: scale(0.8); /* Start scaled down */
+  transition: opacity 0.3s ease-in-out, transform 0.5s ease-in-out;
+}
 
-  #technology-cards {
-  }
+/* Active State for Technology Cards */
+#technology-cards.active {
+  opacity: 1; /* Fully visible */
+  transform: scale(1); /* Full size */
+}
+
+
+.technologies-used-text-container{
+  display: flex;
+  justify-content: center;
+
+  width: 100vw;
+  height: 75vh;
+  background-color: #fed0bb;
+
+
+
+}
+
+
+
+.tech-text{
+  color: #461220;
+  opacity: 0; /* Start hidden */
+  transform: scale(0.8); /* Start scaled down */
+  transition: opacity 0.2s ease-in-out, transform 0.5s ease-in-out;
+}
+
+
+.tech-text.active {
+  opacity: 1; /* Fully visible */
+  transform: scale(1); /* Full size */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.recommendations-info {
+  height: 100vh;
+  width: 100vw;
+  background-color: #fed0bb;
+}
+
+
+/*background: linear-gradient(to bottom, #fed0bb 50%, #461220 100%);*/
