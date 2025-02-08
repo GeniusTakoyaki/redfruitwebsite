@@ -612,6 +612,7 @@ body {
   height: 40vh;
   border-radius: 0.5rem; /* Rounded corners */
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* Shadow effect */
+  
 }
 
 .recommend-image {
@@ -634,12 +635,41 @@ body {
   font-size: 1rem; /* text-base */
 }
 
-#recommend-row {
+.row-container {
+  display: flex;
   height: 100%;
   width: 100%;
   justify-content: center;
+
+
+  opacity: 0; /* Start hidden */
+  transform: scale(0.8); /* Start scaled down */
+  transition: opacity 0.3s ease-in-out, transform 0.5s ease-in-out;
 }
 
+
+.row-container.active{
+  opacity: 1; /* Fully visible */
+  transform: scale(1); /* Full size */
+}
+
+.row-container:nth-of-type(2) {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  justify-content: center;
+
+
+  opacity: 0; /* Start hidden */
+  transform: scale(0.8); /* Start scaled down */
+  transition: opacity 0.3s ease-in-out, transform 0.5s ease-in-out;
+}
+
+.row-container.active:nth-of-type(2){
+  opacity: 1; /* Fully visible */
+  transform: scale(1); /* Full size */
+  transition-delay: 0.4s;
+}
 
 
 /*background: linear-gradient(to bottom, #fed0bb 50%, #461220 100%);*/

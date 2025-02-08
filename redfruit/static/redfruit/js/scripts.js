@@ -366,3 +366,63 @@ document.addEventListener('DOMContentLoaded', () => {
     e.preventDefault(); // Prevent default behavior (optional)
   });
 });
+
+
+
+document.addEventListener("DOMContentLoaded", function () {
+  const recommend_sect = document.querySelector(".recommendations-info");
+  const recommend_rows = document.querySelectorAll('.row-container');
+  const curtain = document.querySelector(".curtain");
+
+  // Exit if any required element doesn't exist
+  if (!curtain || !recommend_sect || !recommend_rows) {
+    console.warn("Required elements not found.");
+    return;
+  }
+
+  // Define the threshold for center alignment (adjust as needed)
+  const centerThreshold = 200;
+
+  // Scroll event listener for the .curtain element
+  curtain.addEventListener("scroll", function () {
+    // Get the bounding rectangle of the section relative to the viewport
+    const sectionRect = recommend_sect.getBoundingClientRect();
+    const curtainRect = curtain.getBoundingClientRect();
+
+    // Calculate the center of the curtain's visible area (viewport center)
+    const curtainCenterY = curtainRect.height / 2;
+
+    // Calculate the vertical center of the technologies-container
+    const sectionCenterY = sectionRect.top + sectionRect.height / 2;
+
+    // Determine the distance between the section's center and the curtain's center
+    const distanceFromCurtainCenter = sectionCenterY - curtainCenterY;
+    console.log(distanceFromCurtainCenter)
+    // Update scroll position
+    const scrollPosition = curtain.scrollTop;
+    const dynamicTop = curtainCenterY - recommend_rows.offsetHeight / 2 + scrollPosition;
+    // Check if the technologies-container is centered in the viewport
+    if (Math.abs(distanceFromCurtainCenter) <= centerThreshold) {
+      // Add the 'active' class
+
+      recommend_rows[0].classList.add('active');
+      recommend_rows[1].classList.add('active');
+
+      
+      recommend_rows[0].style.position = "relative";
+      recommend_rows[0].style.top = `${dynamicTop}px`;
+
+      recommend_rows[1].style.position = "relative";
+      recommend_rows[1].style.top = `${dynamicTop}px`;
+
+    } else {
+      // Remove the 'active' class
+      recommend_rows[0].classList.remove('active');
+      recommend_rows[1].classList.remove('active');
+      // Reset the position to avoid lingering styles
+
+      //recommend_rows[0].style.top = `${dynamicTop}px`;
+      //recommend_rows[1].style.top = `${dynamicTop}px`;
+    }
+  });
+});
