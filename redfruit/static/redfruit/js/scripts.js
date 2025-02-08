@@ -137,10 +137,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Recalculate and apply the new dynamic top value
     const dynamicTop = curtainCenterY + scrollPosition - content.offsetHeight / 2;
+
     
     let opacity = 0;
     let fixed = false;
     const currentStyles = content.style.cssText;
+
+    if (sectionRect.bottom < -215) {
+      content.style.visibility = 'hidden'; // Directly set the visibility property
+      return; // Exit the function or block if needed
+    }
     
     if (distanceFromCurtainCenter < 0) {
       opacity = 1;
@@ -150,6 +156,7 @@ document.addEventListener("DOMContentLoaded", function () {
         opacity: ${opacity};
         position: ${fixed ? 'absolute' : 'relative'};
         top: ${fixed ? `${dynamicTop}px` : 'auto'};
+        visibility: visible;
         transform: scale(${1});
         display: flex;
         flex-direction: column;
@@ -164,9 +171,10 @@ document.addEventListener("DOMContentLoaded", function () {
         0.2,
         1 - distanceFromCurtainCenter / (curtainRect.height / 2)
       );
+      content.style.cssText = currentStyles + `; opacity: ${opacity}; position: ${fixed ? 'absolute' : 'relative'}; top: ${fixed ? `${dynamicTop}px` : 'auto'}; transform: scale(${scale});`;
     }
     // Apply styles to the content
-    content.style.cssText = currentStyles + `; opacity: ${opacity}; position: ${fixed ? 'absolute' : 'relative'}; top: ${fixed ? `${dynamicTop}px` : 'auto'}; transform: scale(${scale});`;
+    
 
   });
 });
