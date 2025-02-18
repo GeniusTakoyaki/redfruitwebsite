@@ -131,9 +131,9 @@
 <div class="recommendations-info">
   <div class="row-container">
       <div class="recommend-card">
-        <img class="recommend-image" src="https://source.unsplash.com/random/1600x900" alt="Sunset in the mountains">
+        <img class="recommend-image" src="{% static 'redfruit/assets/img/recommendations/different-fruits.jpg'%}" alt="Fruits">
         <div class="recommend-content">
-          <div class="recommend-title">Fruit Types</div>
+          <div class="recommend-title">Add more Fruit Types</div>
           <p class="recommend-text">
             Support for more fruit types (e.g., yellow or green fruits)
           </p>
@@ -141,7 +141,7 @@
     </div>
 
       <div class="recommend-card">
-        <img class="recommend-image" src="https://source.unsplash.com/random/1600x900" alt="Sunset in the mountains">
+        <img class="recommend-image" src="{% static 'redfruit/assets/img/recommendations/th.jpg'%}" alt="Big Data">
         <div class="recommend-content">
           <div class="recommend-title">Larger Dataset</div>
           <p class="recommend-text">
@@ -151,11 +151,11 @@
       </div>
 
       <div class="recommend-card">
-        <img class="recommend-image" src="https://source.unsplash.com/random/1600x900" alt="Sunset in the mountains">
+        <img class="recommend-image" src="{% static 'redfruit/assets/img/recommendations/model-architecture.png'%}" alt="Architecture">
         <div class="recommend-content">
-          <div class="recommend-title">Larger Dataset</div>
+          <div class="recommend-title">Improve Model Architecture</div>
           <p class="recommend-text">
-            Improved accuracy with a larger dataset, could lead to better generalization.
+            Create CNN Deeper Layers and experiment with Vision Transformers (ViTs) for better feature representation.
           </p>
         </div>
     </div>
@@ -163,31 +163,63 @@
 
     <div class="row-container">
       <div class="recommend-card">
-        <img class="recommend-image" src="https://source.unsplash.com/random/1600x900" alt="Sunset in the mountains">
+        <img class="recommend-image" src="{% static 'redfruit/assets/img/recommendations/apple-img.jpg'%}" alt="Apple">
         <div class="recommend-content">
-          <div class="recommend-title">Fruit Types</div>
+          <div class="recommend-title">Avoid Biased Datasets</div>
           <p class="recommend-text">
-            Support for more fruit types (e.g., yellow or green fruits)
+            Ensure apples and tomatoes are not always photographed in the same conditions.
           </p>
         </div>
     </div>
 
       <div class="recommend-card">
-        <img class="recommend-image" src="https://source.unsplash.com/random/1600x900" alt="Sunset in the mountains">
+        <img class="recommend-image" src="{% static 'redfruit/assets/img/recommendations/smartphone.jpg'%}" alt="smartphone">
         <div class="recommend-content">
-          <div class="recommend-title">Larger Dataset</div>
+          <div class="recommend-title">Test on Real-World Devices</div>
           <p class="recommend-text">
-            Improved accuracy with a larger dataset, could lead to better generalization.
+            If used in a mobile app, test the model with smartphone cameras in different lighting.
           </p>
         </div>
       </div>
 
       <div class="recommend-card">
-        <img class="recommend-image" src="https://source.unsplash.com/random/1600x900" alt="Sunset in the mountains">
+        <img class="recommend-image" src="{% static 'redfruit/assets/img/recommendations/network.jpg'%}" alt="Network">
         <div class="recommend-content">
-          <div class="recommend-title">Larger Dataset</div>
+          <div class="recommend-title">Try different techniques</div>
           <p class="recommend-text">
-            Improved accuracy with a larger dataset, could lead to better generalization.
+            Try recent innovations such as introduction of GNN Classifiers, image preprocessing techniques, and more.
+          </p>
+        </div>
+    </div>
+  </div>
+
+  <div class="row-container">
+      <div class="recommend-card">
+        <img class="recommend-image" src="{% static 'redfruit/assets/img/recommendations/fruits.jpg'%}" alt="Fruits">
+        <div class="recommend-content">
+          <div class="recommend-title"> Use Multi-Label Classification</div>
+          <p class="recommend-text">
+            Instead of only classifying apple vs. tomato, predict varieties (e.g., Fuji apple, Roma tomato).
+          </p>
+        </div>
+    </div>
+
+      <div class="recommend-card">
+        <img class="recommend-image" src="{% static 'redfruit/assets/img/recommendations/learning.jpg'%}" alt="Learning">
+        <div class="recommend-content">
+          <div class="recommend-title">Enable Continuous Learning</div>
+          <p class="recommend-text">
+            Implement active learning where users label difficult cases for improvement.
+          </p>
+        </div>
+      </div>
+
+      <div class="recommend-card">
+        <img class="recommend-image" src="{% static 'redfruit/assets/img/recommendations/decision-tree.jpg'%}" alt="Decision Tree">
+        <div class="recommend-content">
+          <div class="recommend-title">Use ensembling techniques</div>
+          <p class="recommend-text">
+            Use ensemble learning (combine multiple models) to improve classification robustness.
           </p>
         </div>
     </div>
@@ -195,42 +227,52 @@
 </div>
 
 
-<h1> Datasets</h1>
-<p>Consist of apples and tomatoes image</p>
+<div class="dummy-space" id="gradient-space">
+    <h1 class="title" id="dataset_title"> Datasets</h1>
+</div>
+
+<div class="empty-space"></div>
 
 
-
-<div class='dataset-container'>
-  <div class="slider" style="
-    --width: calc(100vw - 2rem);
-    --height: 300px;
-    --quantity: 4;
-    ">
-    <div class="list">
-      <div class="item" style="--position: 1"><img src="{% static 'redfruit/assets/img/sample_tomato/tomato1.jpeg' %}" alt="Tomato Image"></div>
-      <div class="item" style="--position: 2"><img src="{% static 'redfruit/assets/img/sample_tomato/tomato2.jpeg' %}" alt="Tomato Image"></div>
-      <div class="item" style="--position: 3"><img src="{% static 'redfruit/assets/img/sample_tomato/tomato3.jpeg' %}" alt="Tomato Image"></div>
-      <div class="item" style="--position: 4"><img src="{% static 'redfruit/assets/img/sample_tomato/tomato4.jpeg' %}" alt="Tomato Image"></div>
-      <div class="item" style="--position: 5"><img src="{% static 'redfruit/assets/img/sample_tomato/tomato5.jpeg' %}" alt="Tomato Image"></div>
-      <div class="item" style="--position: 6"><img src="{% static 'redfruit/assets/img/sample_tomato/tomato6.jpeg' %}" alt="Tomato Image"></div>
-      <div class="item" style="--position: 7"><img src="{% static 'redfruit/assets/img/sample_apple/apple1.jpg' %}" alt="Apple Image"></div>
-      <div class="item" style="--position: 8"><img src="{% static 'redfruit/assets/img/sample_apple/apple2.jpeg' %}" alt="Apple Image"></div>
-      <div class="item" style="--position: 9"><img src="{% static 'redfruit/assets/img/sample_apple/apple3.jpeg' %}" alt="Apple Image"></div>
-      <div class="item" style="--position: 10"><img src="{% static 'redfruit/assets/img/sample_apple/apple4.jpeg' %}" alt="Apple Image"></div>
-      <div class="item" style="--position: 11"><img src="{% static 'redfruit/assets/img/sample_apple/apple5.jpeg' %}" alt="Apple Image"></div>
-      <div class="item" style="--position: 12"><img src="{% static 'redfruit/assets/img/sample_apple/apple6.jpeg' %}" alt="Apple Image"></div>
+<div class="displaying-dataset-container">
+  <div class='dataset-container'>
+    <div class="slider" style="
+      --width: calc(100vw - 2rem);
+      --height: 300px;
+      --quantity: 4;
+      ">
+      <div class="list">
+        <div class="item" style="--position: 1"><img src="{% static 'redfruit/assets/img/sample_tomato/tomato1.jpeg' %}" alt="Tomato Image"></div>
+        <div class="item" style="--position: 2"><img src="{% static 'redfruit/assets/img/sample_tomato/tomato2.jpeg' %}" alt="Tomato Image"></div>
+        <div class="item" style="--position: 3"><img src="{% static 'redfruit/assets/img/sample_tomato/tomato3.jpeg' %}" alt="Tomato Image"></div>
+        <div class="item" style="--position: 4"><img src="{% static 'redfruit/assets/img/sample_tomato/tomato4.jpeg' %}" alt="Tomato Image"></div>
+        <div class="item" style="--position: 5"><img src="{% static 'redfruit/assets/img/sample_tomato/tomato5.jpeg' %}" alt="Tomato Image"></div>
+        <div class="item" style="--position: 6"><img src="{% static 'redfruit/assets/img/sample_tomato/tomato6.jpeg' %}" alt="Tomato Image"></div>
+        <div class="item" style="--position: 7"><img src="{% static 'redfruit/assets/img/sample_apple/apple1.jpg' %}" alt="Apple Image"></div>
+        <div class="item" style="--position: 8"><img src="{% static 'redfruit/assets/img/sample_apple/apple2.jpeg' %}" alt="Apple Image"></div>
+        <div class="item" style="--position: 9"><img src="{% static 'redfruit/assets/img/sample_apple/apple3.jpeg' %}" alt="Apple Image"></div>
+        <div class="item" style="--position: 10"><img src="{% static 'redfruit/assets/img/sample_apple/apple4.jpeg' %}" alt="Apple Image"></div>
+        <div class="item" style="--position: 11"><img src="{% static 'redfruit/assets/img/sample_apple/apple5.jpeg' %}" alt="Apple Image"></div>
+        <div class="item" style="--position: 12"><img src="{% static 'redfruit/assets/img/sample_apple/apple6.jpeg' %}" alt="Apple Image"></div>
+      </div>
     </div>
   </div>
- 
 </div>
 
 
+<div class="profile-section">
+  <div class="row">
+      <div class="column">
+          <div class="image-content" ><img class="profile-pic" src="{% static 'redfruit/assets/img/me2.jpg' %}" alt="My Profile"></div>
+          <strong class="name">Jan Carlo Galinato</strong>
+          <h5 class="job-title"> Machine Learning Engineer</h5>
+      </div>
 
+      <div class="profile-description">
+      <p>This project was developed by , an AI enthusiast passionate about machine learning, image recognition, and real-world AI applications.</p>
+    </div>
+  </div>
 
-
-
-    <h2>Who Built This?</h2>
-    <p>This project was developed by <strong>Jan Carlo Galinat</strong>, an AI enthusiast passionate about machine learning, image recognition, and real-world AI applications.</p>
 <!-- <img src="{% static 'redfruit/assets/img/sample_apple/apple6.jpeg' %}" alt="Apple Image"> -->
-
+</div>
 {% endblock %}

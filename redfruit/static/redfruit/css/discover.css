@@ -36,23 +36,23 @@ body {
     border: none;
 }
 
-.slider .list .item{
-    width: var(--width);
-    height: var(--height);
+.slider .list .item {
+    width: 600px;
+    height: 400px;
     position: absolute;
     right: 100%;
     animation: autoRun 15s linear infinite;
-    animation-delay: calc( (15s / var(--quantity)) * (var(--position) - 1)) !important;
+    animation-delay: calc((15s / var(--quantity)) * (var(--position) - 1)) !important;
+
+
 }
 
-
-.slider .list .item img{
-    /*300px*/
+.slider .list .item img {
     height: 400px;
     width: 600px;
     object-fit: cover;
-    
 }
+
 
 
 @keyframes autoRun {
@@ -607,7 +607,7 @@ body {
 .recommend-card {
   margin: 15px;
   box-sizing: border-box;
-  background-color: white;
+  background: linear-gradient(to left, #461220 20%, #5F0F25 100%);;
   width: calc((100vw / 3) - 40px);
   height: 40vh;
   border-radius: 0.5rem; /* Rounded corners */
@@ -616,8 +616,11 @@ body {
 }
 
 .recommend-image {
-  width: inherit;
-  display: block;
+  width: 100%;
+  height: 50%;
+  object-fit: cover; /* Crops the image to fill the card */
+  border-top-left-radius: inherit;
+  border-top-right-radius: inherit;
 }
 
 .recommend-content {
@@ -628,10 +631,11 @@ body {
   font-weight: bold;
   font-size: 1.25rem; /* text-xl */
   margin-bottom: 0.5rem;
+  color: #fed0bb;
 }
 
 .recommend-text {
-  color: #4a5568; /* text-gray-700 */
+  color: #F9D8C8; /* text-gray-700 */
   font-size: 1rem; /* text-base */
 }
 
@@ -653,22 +657,137 @@ body {
   transform: scale(1); /* Full size */
 }
 
-.row-container:nth-of-type(2) {
-  display: flex;
-  height: 100%;
-  width: 100%;
-  justify-content: center;
-
-
-  opacity: 0; /* Start hidden */
-  transform: scale(0.8); /* Start scaled down */
-  transition: opacity 0.3s ease-in-out, transform 0.5s ease-in-out;
-}
-
 .row-container.active:nth-of-type(2){
   opacity: 1; /* Fully visible */
   transform: scale(1); /* Full size */
   transition-delay: 0.4s;
+}
+
+.row-container.active:nth-of-type(3){
+  opacity: 1; /* Fully visible */
+  transform: scale(1); /* Full size */
+  transition-delay: 0.6s;
+}
+
+#gradient-space{
+    display: flex;
+    background: linear-gradient(to bottom, #fed0bb 30%, #461220 100%);
+    height: 150vh !important;
+    align-items: center;
+    justify-content: center;
+}
+
+
+#gradient-space .title {
+    color: rgb(254, 208, 187);
+    transform: scale(3)
+}
+
+.empty-space {
+    background-color: #461220;
+    height: 25vh;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.displaying-dataset-container {
+    background-color: #461220;
+    height: 75vh;
+}
+
+.profile-section {
+    background: linear-gradient(to bottom, #3F0C1A 50%, #461220 100%);
+    width: 100%;
+    padding: 50px 10%;
+}
+
+.profile-section .row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 50px;
+    flex-wrap: wrap;
+}
+
+.profile-description {
+    color: white;
+    flex: 1;
+    max-width: 50%;
+    font-size: 16px;
+    line-height: 1.5;
+    padding: 65px;
+}
+
+
+.column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+    max-width: 50%;
+    text-align: center;
+}
+
+.image-content img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 50%;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+.name {
+    margin-top: 17px;
+    font-size: 22px;
+    color: white;
+}
+
+.job-title {
+    font-size: 12px;
+    color: #f0a5b5;
+    margin-top: 5px;
+
+}
+
+/* Responsive Design: Adjust Layout for Phones */
+@media (max-width: 768px) {
+    .profile-section .row {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    /* Make the image appear first, then name & job title, then description */
+    .column {
+        max-width: 100%;
+    }
+
+    .profile-description {
+        max-width: 100%;
+        margin-top: 20px;
+    }
+}
+
+
+@media (max-width: 991px) {
+    .profile-description {
+        padding: 40px;
+    }
 }
 
 

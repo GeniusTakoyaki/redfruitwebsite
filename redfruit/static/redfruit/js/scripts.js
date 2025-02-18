@@ -381,7 +381,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // Define the threshold for center alignment (adjust as needed)
-  const centerThreshold = 200;
+  const centerThreshold = 500;
 
   // Scroll event listener for the .curtain element
   curtain.addEventListener("scroll", function () {
@@ -397,7 +397,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Determine the distance between the section's center and the curtain's center
     const distanceFromCurtainCenter = sectionCenterY - curtainCenterY;
-    console.log(distanceFromCurtainCenter)
     // Update scroll position
     const scrollPosition = curtain.scrollTop;
     const dynamicTop = curtainCenterY - recommend_rows.offsetHeight / 2 + scrollPosition;
@@ -407,6 +406,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
       recommend_rows[0].classList.add('active');
       recommend_rows[1].classList.add('active');
+      recommend_rows[2].classList.add('active');
 
       
       recommend_rows[0].style.position = "relative";
@@ -415,14 +415,70 @@ document.addEventListener("DOMContentLoaded", function () {
       recommend_rows[1].style.position = "relative";
       recommend_rows[1].style.top = `${dynamicTop}px`;
 
+      recommend_rows[2].style.position = "relative";
+      recommend_rows[2].style.top = `${dynamicTop}px`;
+
     } else {
       // Remove the 'active' class
       recommend_rows[0].classList.remove('active');
       recommend_rows[1].classList.remove('active');
+      recommend_rows[2].classList.remove('active');
       // Reset the position to avoid lingering styles
 
       //recommend_rows[0].style.top = `${dynamicTop}px`;
       //recommend_rows[1].style.top = `${dynamicTop}px`;
+    }
+  });
+});
+
+
+
+document.addEventListener("DOMContentLoaded", function () {
+  const spaces = document.getElementById("gradient-space");
+  const data_title = document.getElementById('dataset_title');
+  const curtain = document.querySelector(".curtain");
+
+  // Exit if any required element doesn't exist
+  if (!curtain || !data_title) {
+    console.warn("Required elements not found.");
+    return;
+  }
+
+  // Define the threshold for center alignment (adjust as needed)
+  const centerThreshold = 590;
+
+  // Scroll event listener for the .curtain element
+  curtain.addEventListener("scroll", function () {
+    // Get the bounding rectangle of the section relative to the viewport
+    const sectionRect = spaces.getBoundingClientRect();
+    const curtainRect = curtain.getBoundingClientRect();
+
+    // Calculate the center of the curtain's visible area (viewport center)
+    const curtainCenterY = curtainRect.height / 2;
+
+    // Calculate the vertical center of the technologies-container
+    const sectionCenterY = sectionRect.top + sectionRect.height / 2;
+
+    // Determine the distance between the section's center and the curtain's center
+    const distanceFromCurtainCenter = sectionCenterY - curtainCenterY;
+    // Update scroll position
+    const scrollPosition = curtain.scrollTop;
+    const dynamicTopTitle = curtainCenterY - data_title.offsetHeight / 2 + scrollPosition;
+
+    if (distanceFromCurtainCenter > 240) {
+        data_title.style.visibility = "hidden"; // Hide the element
+    } else {
+        data_title.style.visibility = "visible"; // Show the element
+    }
+
+
+
+
+    if (Math.abs(distanceFromCurtainCenter) <= centerThreshold) {
+
+      data_title.style.position = "absolute";
+      data_title.style.top = `${dynamicTopTitle}px`;
+
     }
   });
 });
