@@ -77,12 +77,29 @@ body {
     padding-top: 250px;
     }
 
+
 .welcome-text {
     color: #fed0bb;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease-out 1s, transform 1.5s ease-out 1s;
 }
 
 .welcome-description {
     color: #fed0bb;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease-out 1.5s, transform 1.5s ease-out 1.5s;
+}
+
+.welcome-text.animate {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.welcome-description.animate {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 

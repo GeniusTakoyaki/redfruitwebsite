@@ -34,7 +34,6 @@ window.addEventListener('DOMContentLoaded', event => {
 });
 */
 
-
 document.addEventListener('DOMContentLoaded', () => {
   // Add the 'animated' class to the curtain after a short delay
   setTimeout(() => {
@@ -109,6 +108,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 document.addEventListener("DOMContentLoaded", function () {
+    //Welcome Section
+    const welcome_text = document.querySelector('.welcome-text');
+    const welcome_description = document.querySelector('.welcome-description');
+    setTimeout(() => {
+        welcome_text.classList.add('animate');
+        welcome_description.classList.add('animate');
+    }, 1); // 2-second delay
+
+
+
   const whySection = document.querySelector(".reason-container");
   const content = document.querySelector(".reason-container .reason-content");
   const curtain = document.querySelector(".curtain");
@@ -168,7 +177,7 @@ document.addEventListener("DOMContentLoaded", function () {
     } else {
       scale = Math.max(0.5, 1 - distanceFromCurtainCenter / (curtainRect.height / 2));
       opacity = Math.max(
-        0.2,
+        0,
         1 - distanceFromCurtainCenter / (curtainRect.height / 2)
       );
       content.style.cssText = currentStyles + `; opacity: ${opacity}; position: ${fixed ? 'absolute' : 'relative'}; top: ${fixed ? `${dynamicTop}px` : 'auto'}; transform: scale(${scale});`;
@@ -176,17 +185,16 @@ document.addEventListener("DOMContentLoaded", function () {
     // Apply styles to the content
     
 
+
+
+
   });
-});
-
-
-document.addEventListener("DOMContentLoaded", function () {
+  //Technologies and Frameworks Section
   const tech_section = document.querySelector(".technologies-used-text-container");
   const text = document.querySelector('.tech-text');
-  const curtain = document.querySelector(".curtain");
 
   // Exit if any required element doesn't exist
-  if (!curtain || !text || !tech_section) {
+  if (!text || !tech_section) {
     console.warn("Required elements not found.");
     return;
   }
@@ -212,13 +220,13 @@ document.addEventListener("DOMContentLoaded", function () {
     // Update scroll position
     const scrollPosition = curtain.scrollTop;
     const dynamicTop = curtainCenterY - text.offsetHeight / 2 + scrollPosition;
-    
+
     // Check if the technologies-container is centered in the viewport
     if (Math.abs(distanceFromCurtainCenter) <= centerThreshold) {
       // Add the 'active' class
       text.classList.add('active');
 
-      
+
       text.style.position = "absolute";
       text.style.top = `${dynamicTop}px`;
 
@@ -229,29 +237,25 @@ document.addEventListener("DOMContentLoaded", function () {
       text.style.top = `${dynamicTop}px`;
     }
   });
-});
 
 
-
-
-document.addEventListener("DOMContentLoaded", function () {
-  const tech_section = document.querySelector(".technologies-container");
+  //Cards Section
+  const tech_cards_section = document.querySelector(".technologies-container");
   const technologyCards = document.getElementById('technology-cards');
-  const curtain = document.querySelector(".curtain");
 
   // Exit if any required element doesn't exist
-  if (!curtain || !tech_section || !technologyCards) {
+  if (!tech_cards_section || !technologyCards) {
     console.warn("Required elements not found.");
     return;
   }
 
   // Define the threshold for center alignment (adjust as needed)
-  const centerThreshold = 200;
+  const CardsCenterThreshold = 200;
 
   // Scroll event listener for the .curtain element
   curtain.addEventListener("scroll", function () {
     // Get the bounding rectangle of the section relative to the viewport
-    const sectionRect = tech_section.getBoundingClientRect();
+    const sectionRect = tech_cards_section.getBoundingClientRect();
     const curtainRect = curtain.getBoundingClientRect();
 
     // Calculate the center of the curtain's visible area (viewport center)
@@ -267,12 +271,12 @@ document.addEventListener("DOMContentLoaded", function () {
     const scrollPosition = curtain.scrollTop;
     const dynamicTop = curtainCenterY - technologyCards.offsetHeight / 2 + scrollPosition;
     // Check if the technologies-container is centered in the viewport
-    if (Math.abs(distanceFromCurtainCenter) <= centerThreshold) {
+    if (Math.abs(distanceFromCurtainCenter) <= CardsCenterThreshold) {
       // Add the 'active' class
       technologyCards.classList.add('active');
 
       // Dynamically position the technologyCards at the center of the curtain
-      
+
       technologyCards.style.position = "absolute";
       technologyCards.style.top = `${dynamicTop}px`;
 
@@ -283,10 +287,115 @@ document.addEventListener("DOMContentLoaded", function () {
       technologyCards.style.top = `${dynamicTop}px`;
     }
   });
+
+
+  //Recommendation Section
+  const recommend_sect = document.querySelector(".recommendations-info");
+  const recommend_rows = document.querySelectorAll('.row-container');
+
+  // Exit if any required element doesn't exist
+  if (!recommend_sect || !recommend_rows) {
+    console.warn("Required elements not found.");
+    return;
+  }
+
+  // Define the threshold for center alignment (adjust as needed)
+  const RecommendCenterThreshold = 500;
+
+  // Scroll event listener for the .curtain element
+  curtain.addEventListener("scroll", function () {
+    // Get the bounding rectangle of the section relative to the viewport
+    const sectionRect = recommend_sect.getBoundingClientRect();
+    const curtainRect = curtain.getBoundingClientRect();
+
+    // Calculate the center of the curtain's visible area (viewport center)
+    const curtainCenterY = curtainRect.height / 2;
+
+    // Calculate the vertical center of the technologies-container
+    const sectionCenterY = sectionRect.top + sectionRect.height / 2;
+
+    // Determine the distance between the section's center and the curtain's center
+    const distanceFromCurtainCenter = sectionCenterY - curtainCenterY;
+    // Update scroll position
+    const scrollPosition = curtain.scrollTop;
+    const dynamicTop = curtainCenterY - recommend_rows.offsetHeight / 2 + scrollPosition;
+    // Check if the technologies-container is centered in the viewport
+    if (Math.abs(distanceFromCurtainCenter) <= RecommendCenterThreshold) {
+      // Add the 'active' class
+
+      recommend_rows[0].classList.add('active');
+      recommend_rows[1].classList.add('active');
+      recommend_rows[2].classList.add('active');
+
+
+      recommend_rows[0].style.position = "relative";
+      recommend_rows[0].style.top = `${dynamicTop}px`;
+
+      recommend_rows[1].style.position = "relative";
+      recommend_rows[1].style.top = `${dynamicTop}px`;
+
+      recommend_rows[2].style.position = "relative";
+      recommend_rows[2].style.top = `${dynamicTop}px`;
+
+    } else {
+      // Remove the 'active' class
+      recommend_rows[0].classList.remove('active');
+      recommend_rows[1].classList.remove('active');
+      recommend_rows[2].classList.remove('active');
+      // Reset the position to avoid lingering styles
+
+      //recommend_rows[0].style.top = `${dynamicTop}px`;
+      //recommend_rows[1].style.top = `${dynamicTop}px`;
+    }
+  });
+
+
+  //Dataset Section
+
+  const spaces = document.getElementById("gradient-space");
+  const data_title = document.getElementById('dataset_title');
+
+  // Exit if any required element doesn't exist
+  if (!data_title) {
+    console.warn("Required elements not found.");
+    return;
+  }
+
+  // Define the threshold for center alignment (adjust as needed)
+  const DataTitleCenterThreshold = 590;
+
+  // Scroll event listener for the .curtain element
+  curtain.addEventListener("scroll", function () {
+    // Get the bounding rectangle of the section relative to the viewport
+    const sectionRect = spaces.getBoundingClientRect();
+    const curtainRect = curtain.getBoundingClientRect();
+
+    // Calculate the center of the curtain's visible area (viewport center)
+    const curtainCenterY = curtainRect.height / 2;
+
+    // Calculate the vertical center of the technologies-container
+    const sectionCenterY = sectionRect.top + sectionRect.height / 2;
+
+    // Determine the distance between the section's center and the curtain's center
+    const distanceFromCurtainCenter = sectionCenterY - curtainCenterY;
+    // Update scroll position
+    const scrollPosition = curtain.scrollTop;
+    const dynamicTopTitle = curtainCenterY - data_title.offsetHeight / 2 + scrollPosition;
+
+    if (distanceFromCurtainCenter > 240) {
+        data_title.style.visibility = "hidden"; // Hide the element
+    } else {
+        data_title.style.visibility = "visible"; // Show the element
+    }
+
+    if (Math.abs(distanceFromCurtainCenter) <= DataTitleCenterThreshold) {
+
+      data_title.style.position = "absolute";
+      data_title.style.top = `${dynamicTopTitle}px`;
+
+    }
+  });
 });
-
-
-
 
 
 
@@ -365,120 +474,14 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     e.preventDefault(); // Prevent default behavior (optional)
   });
+
 });
 
 
-
 document.addEventListener("DOMContentLoaded", function () {
-  const recommend_sect = document.querySelector(".recommendations-info");
-  const recommend_rows = document.querySelectorAll('.row-container');
-  const curtain = document.querySelector(".curtain");
+    const overview_text = document.querySelector('.overview-container');
+    setTimeout(() => {
 
-  // Exit if any required element doesn't exist
-  if (!curtain || !recommend_sect || !recommend_rows) {
-    console.warn("Required elements not found.");
-    return;
-  }
-
-  // Define the threshold for center alignment (adjust as needed)
-  const centerThreshold = 500;
-
-  // Scroll event listener for the .curtain element
-  curtain.addEventListener("scroll", function () {
-    // Get the bounding rectangle of the section relative to the viewport
-    const sectionRect = recommend_sect.getBoundingClientRect();
-    const curtainRect = curtain.getBoundingClientRect();
-
-    // Calculate the center of the curtain's visible area (viewport center)
-    const curtainCenterY = curtainRect.height / 2;
-
-    // Calculate the vertical center of the technologies-container
-    const sectionCenterY = sectionRect.top + sectionRect.height / 2;
-
-    // Determine the distance between the section's center and the curtain's center
-    const distanceFromCurtainCenter = sectionCenterY - curtainCenterY;
-    // Update scroll position
-    const scrollPosition = curtain.scrollTop;
-    const dynamicTop = curtainCenterY - recommend_rows.offsetHeight / 2 + scrollPosition;
-    // Check if the technologies-container is centered in the viewport
-    if (Math.abs(distanceFromCurtainCenter) <= centerThreshold) {
-      // Add the 'active' class
-
-      recommend_rows[0].classList.add('active');
-      recommend_rows[1].classList.add('active');
-      recommend_rows[2].classList.add('active');
-
-      
-      recommend_rows[0].style.position = "relative";
-      recommend_rows[0].style.top = `${dynamicTop}px`;
-
-      recommend_rows[1].style.position = "relative";
-      recommend_rows[1].style.top = `${dynamicTop}px`;
-
-      recommend_rows[2].style.position = "relative";
-      recommend_rows[2].style.top = `${dynamicTop}px`;
-
-    } else {
-      // Remove the 'active' class
-      recommend_rows[0].classList.remove('active');
-      recommend_rows[1].classList.remove('active');
-      recommend_rows[2].classList.remove('active');
-      // Reset the position to avoid lingering styles
-
-      //recommend_rows[0].style.top = `${dynamicTop}px`;
-      //recommend_rows[1].style.top = `${dynamicTop}px`;
-    }
-  });
-});
-
-
-
-document.addEventListener("DOMContentLoaded", function () {
-  const spaces = document.getElementById("gradient-space");
-  const data_title = document.getElementById('dataset_title');
-  const curtain = document.querySelector(".curtain");
-
-  // Exit if any required element doesn't exist
-  if (!curtain || !data_title) {
-    console.warn("Required elements not found.");
-    return;
-  }
-
-  // Define the threshold for center alignment (adjust as needed)
-  const centerThreshold = 590;
-
-  // Scroll event listener for the .curtain element
-  curtain.addEventListener("scroll", function () {
-    // Get the bounding rectangle of the section relative to the viewport
-    const sectionRect = spaces.getBoundingClientRect();
-    const curtainRect = curtain.getBoundingClientRect();
-
-    // Calculate the center of the curtain's visible area (viewport center)
-    const curtainCenterY = curtainRect.height / 2;
-
-    // Calculate the vertical center of the technologies-container
-    const sectionCenterY = sectionRect.top + sectionRect.height / 2;
-
-    // Determine the distance between the section's center and the curtain's center
-    const distanceFromCurtainCenter = sectionCenterY - curtainCenterY;
-    // Update scroll position
-    const scrollPosition = curtain.scrollTop;
-    const dynamicTopTitle = curtainCenterY - data_title.offsetHeight / 2 + scrollPosition;
-
-    if (distanceFromCurtainCenter > 240) {
-        data_title.style.visibility = "hidden"; // Hide the element
-    } else {
-        data_title.style.visibility = "visible"; // Show the element
-    }
-
-
-
-
-    if (Math.abs(distanceFromCurtainCenter) <= centerThreshold) {
-
-      data_title.style.position = "absolute";
-      data_title.style.top = `${dynamicTopTitle}px`;
-
-    }
-  });
+        overview_text.classList.add('show');
+    }, 2000); // 2-second delay
 });
