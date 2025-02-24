@@ -13,34 +13,58 @@
   <!-- Upload Container -->
     <div class="upload-container">
       <h1 class="upload_tag">Select a Picture</h1>
-      <form id="uploadForm">
         <div class="mb-3">
-          <input id="fileInput" class="form-control custom-file-input" type="file" required>
+            <div id="fileDropZone" class="file-drop">
+                Drag & Drop Files or Click to Upload
+                <input id="fileInput" class="custom-file-input" type="file" multiple>
+            </div>
+            <div id="file_item" class="file_item"></div>
+
         </div>
-        <button class="button-33" type="submit">Upload</button>
-      </form>
+        <button id='submit-btn' class="button-33" type="submit">Upload</button>
     </div>
   </div>
 
   <div class="hover-container" id="blurOverlay">
-    <div class="card-container">
-      <div class="card-content">
-          <h2>Image Characteristics</h2>
-          <div class="card-body">
-              <div class="image-section">
-                  <img src="path-to-image.jpg" alt="Sample Image">
-              </div>
-              <div class="info-section">
-                  <h3>Characteristics</h3>
-                  <ul>
-                      <li>Color: Red</li>
-                      <li>Size: Medium</li>
-                      <li>Shape: Round</li>
-                  </ul>
-                  <h3>Prediction</h3>
-                  <p>Likely a Tomato</p>
-                  <button class="btn btn-secondary mt-3" id="closeModal">Close</button>
-              </div>
+    <div class="classification-container">
+      <div class="content-container">
+          <div class="row" id="contents">
+            <!-- Image Section -->
+            <div class="image-section">
+                <img class="uploadedImage" alt="Uploaded Image">
+            </div>
+
+            <!-- Info Section -->
+            <div class="info-section">
+                <h1><strong>Classification Result</strong></h1>
+
+                <!-- Filename -->
+                <div class="result-item">
+                    <strong>Filename:</strong>
+                    <span id="filename">N/A</span>
+                </div>
+
+                <!-- Prediction -->
+                <div class="result-item">
+                    <strong>Prediction:</strong>
+                    <span id="prediction">N/A</span>
+                </div>
+
+                <!-- Confidence -->
+                <div class="result-item">
+                    <strong>Confidence:</strong>
+                    <span id="confidence">N/A</span>%
+                </div>
+
+                <!-- Error Message
+                <div class="error-message" id="errorMessage" style="display: none;">
+                    <strong>Error:</strong>
+                    <span id="errorText"></span>
+                </div>-->
+
+                <!-- Close Button -->
+                <button class="btn btn-secondary mt-3" id="closeModal">Close</button>
+            </div>
           </div>
       </div>
   </div>
@@ -48,21 +72,6 @@
 
   <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-  <script>
-    // JavaScript for Modal Effect
-    const uploadForm = document.getElementById('uploadForm');
-    const blurOverlay = document.getElementById('blurOverlay');
-    const closeModal = document.getElementById('closeModal');
-
-    uploadForm.addEventListener('submit', (e) => {
-      e.preventDefault(); // Prevent form submission
-      // Simulate file upload (you can add actual logic here)
-      blurOverlay.style.display = 'flex'; // Show the blur overlay
-    });
-
-    closeModal.addEventListener('click', () => {
-      blurOverlay.style.display = 'none'; // Hide the blur overlay
-    });
-  </script>
+  <script src="{% static 'redfruit/js/ai_page_script.js' %}"></script>
 </body>
 </html>
