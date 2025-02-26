@@ -1971,8 +1971,7 @@ progress {
   }
   
   body {
-    background-color: #461220; /* Fallback for older browsers */
-    background: radial-gradient(circle, #b23a48 75%, #49202b 100%);
+    background-color: #b23a48; /* Fallback for older browsers */
   }
 
 
@@ -11410,4 +11409,24 @@ body::after {
 
 body.color-change::after {
     opacity: 1;
+}
+
+
+@media(max-width: 996px){
+    body::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to left, #8B203D 20%, #b23a48 100%);
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+      z-index: -1;
+    }
+
+    #front-display {
+        top: 75px;
+    }
 }

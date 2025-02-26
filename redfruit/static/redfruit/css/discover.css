@@ -662,28 +662,6 @@ body {
   width: 100%;
   justify-content: center;
 
-
-  opacity: 0; /* Start hidden */
-  transform: scale(0.8); /* Start scaled down */
-  transition: opacity 0.3s ease-in-out, transform 0.5s ease-in-out;
-}
-
-
-.row-container.active{
-  opacity: 1; /* Fully visible */
-  transform: scale(1); /* Full size */
-}
-
-.row-container.active:nth-of-type(2){
-  opacity: 1; /* Fully visible */
-  transform: scale(1); /* Full size */
-  transition-delay: 0.4s;
-}
-
-.row-container.active:nth-of-type(3){
-  opacity: 1; /* Fully visible */
-  transform: scale(1); /* Full size */
-  transition-delay: 0.6s;
 }
 
 #gradient-space{
@@ -782,6 +760,7 @@ body {
 
 }
 
+
 /* Responsive Design: Adjust Layout for Phones */
 @media (max-width: 768px) {
     .profile-section .row {
@@ -805,7 +784,106 @@ body {
     .profile-description {
         padding: 40px;
     }
+
+    .recommend-text {
+        font-size: 15px;
+    }
+
+    .recommend-title {
+        font-size: 17px;
+    }
+}
+
+@media(max-width: 991px) and (min-width: 480px) {
+    .recommend-image {
+        height: 35%;
+    }
+}
+
+
+@media (max-width: 850px) and (min-width: 600px) {
+    .recommend-content{
+        padding: 15px;
+    }
+
+    .recommend-title{
+        font-size: 16px;
+    }
+
+    .recommend-text {
+        font-size: 13px;
+    }
 }
 
 
 /*background: linear-gradient(to bottom, #fed0bb 50%, #461220 100%);*/
+
+
+@media(max-width: 600px) {
+    .welcome-container {
+        padding-right: 0;
+        padding-top: 50px;
+    }
+
+    .reason-content {
+        margin: 0 20px;
+    }
+
+    .welcome-text {
+        font-size: 25px;
+    }
+
+    #technology-cards {
+        justify-content: center;
+    }
+
+    .arrow-btn {
+        position: absolute;
+        margin: 0;
+        width: 100px;
+        height: 100px;
+        background-color: transparent;
+        color: #461220 !important;
+        box-shadow: none;
+    }
+
+    .arrow-btn.next-screen {
+        right: -75px;
+    }
+
+    .arrow-btn.prev-screen {
+        left: -75px;
+    }
+
+    .arrow-btn:hover {
+        transform: scale(1.25);
+        background-color: inherit;
+    }
+
+
+    .row-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap:10px;
+    }
+
+    .recommend-card {
+        flex: 1 1 calc(33.33% - 10px); /* Each item takes 1/3 of the row */
+        min-width: 200px;
+    }
+}
+
+/*Phone Responsiveness*/
+@media (max-width: 400px) {
+    .tech-text {
+        max-width: 200px;
+        word-break: break-word;  /* Break at natural points */
+        overflow-wrap: break-word;
+        text-align: center;
+    }
+
+    .recommend-image {
+        height: 50%;
+    }
+
+}

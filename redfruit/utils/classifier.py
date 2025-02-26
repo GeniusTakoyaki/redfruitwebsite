@@ -67,6 +67,14 @@ class NeuralNetwork(nn.Module):
         return F.softmax(x, dim=1)
 
 
+def transparency_remove(img):
+    if img.mode == "RGBA":
+        white_bg = Image.new("RGB", img.size, (255, 255, 255))
+        white_bg.paste(img, mask=img.split()[3])  # Use alpha as mask
+        return white_bg
+    return img.convert("RGB")
+
+
 
 model_path = 'redfruit/utils/Redfruit-BatchNormalization-params.pth'
 model = NeuralNetwork()
@@ -95,6 +103,7 @@ def classify_image(file):
         # Open and preprocess the image
         image = Image.open(file)
         print("Image opened successfully.")  # Debugging statement
+        image = transparency_remove(image)
 
         image_tensor = transform(image).unsqueeze(0)  # Add batch dimension
         print("Image preprocessed successfully.")  # Debugging statement

@@ -170,8 +170,7 @@ document.addEventListener("DOMContentLoaded", function () {
         display: flex;
         flex-direction: column;
         justify-content: center; 
-        align-items: center;  
-        margin: 0 120px;
+        align-items: center;
         text-align: center;`; 
         return;
     } else {
@@ -287,68 +286,6 @@ document.addEventListener("DOMContentLoaded", function () {
       technologyCards.style.top = `${dynamicTop}px`;
     }
   });
-
-
-  //Recommendation Section
-  const recommend_sect = document.querySelector(".recommendations-info");
-  const recommend_rows = document.querySelectorAll('.row-container');
-
-  // Exit if any required element doesn't exist
-  if (!recommend_sect || !recommend_rows) {
-    console.warn("Required elements not found.");
-    return;
-  }
-
-  // Define the threshold for center alignment (adjust as needed)
-  const RecommendCenterThreshold = 500;
-
-  // Scroll event listener for the .curtain element
-  curtain.addEventListener("scroll", function () {
-    // Get the bounding rectangle of the section relative to the viewport
-    const sectionRect = recommend_sect.getBoundingClientRect();
-    const curtainRect = curtain.getBoundingClientRect();
-
-    // Calculate the center of the curtain's visible area (viewport center)
-    const curtainCenterY = curtainRect.height / 2;
-
-    // Calculate the vertical center of the technologies-container
-    const sectionCenterY = sectionRect.top + sectionRect.height / 2;
-
-    // Determine the distance between the section's center and the curtain's center
-    const distanceFromCurtainCenter = sectionCenterY - curtainCenterY;
-    // Update scroll position
-    const scrollPosition = curtain.scrollTop;
-    const dynamicTop = curtainCenterY - recommend_rows.offsetHeight / 2 + scrollPosition;
-    // Check if the technologies-container is centered in the viewport
-    if (Math.abs(distanceFromCurtainCenter) <= RecommendCenterThreshold) {
-      // Add the 'active' class
-
-      recommend_rows[0].classList.add('active');
-      recommend_rows[1].classList.add('active');
-      recommend_rows[2].classList.add('active');
-
-
-      recommend_rows[0].style.position = "relative";
-      recommend_rows[0].style.top = `${dynamicTop}px`;
-
-      recommend_rows[1].style.position = "relative";
-      recommend_rows[1].style.top = `${dynamicTop}px`;
-
-      recommend_rows[2].style.position = "relative";
-      recommend_rows[2].style.top = `${dynamicTop}px`;
-
-    } else {
-      // Remove the 'active' class
-      recommend_rows[0].classList.remove('active');
-      recommend_rows[1].classList.remove('active');
-      recommend_rows[2].classList.remove('active');
-      // Reset the position to avoid lingering styles
-
-      //recommend_rows[0].style.top = `${dynamicTop}px`;
-      //recommend_rows[1].style.top = `${dynamicTop}px`;
-    }
-  });
-
 
   //Dataset Section
 
