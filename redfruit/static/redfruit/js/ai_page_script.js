@@ -77,6 +77,14 @@ if (uploadedFile != null) {
     formData.append('file', uploadedFile); // 'file' is the key expected by the backend
     const imageURL = URL.createObjectURL(uploadedFile); // Convert file to a temporary URL
 
+
+    //Animation Part of Result
+    background_container = document.querySelector('.classification-container');
+    image_container = document.querySelector('.image-section');
+    info_container = document.querySelector('.info-section');
+    background_filter = document.querySelector('.hover-container');
+
+
     // Use Promises with .then() and .catch()
     fetch('/upload/', { // Replace '/upload/' with your Django endpoint
       method: 'POST',
@@ -89,6 +97,12 @@ if (uploadedFile != null) {
           throw new Error(response.statusText); // Throw an error for non-OK responses
         }
       }).then(result => {
+        background_container.classList.add('animate');
+        image_container.classList.add('animate');
+        info_container.classList.add('animate');
+        background_filter.classList.add('animate');
+
+
         console.log('Server Response:', result); // Log the server's response
         // Dynamically update the HTML with the server response
         if (result.status === 'success') {
@@ -112,5 +126,10 @@ if (uploadedFile != null) {
     });
 
     closeModal.addEventListener('click', () => {
+      background_container.classList.remove('animate');
+      image_container.classList.remove('animate');
+      info_container.classList.remove('animate');
+      background_filter.classList.remove('animate');
+
       blurOverlay.style.display = 'none'; // Hide the blur overlay
     });

@@ -34,16 +34,25 @@ window.addEventListener('DOMContentLoaded', event => {
 });
 */
 
+window.addEventListener('pageshow', (event) => {
+  if (event.persisted) {
+    const curtain = document.querySelector('.out-curtain');
+    curtain.classList.remove('transition-out');
+  }
+});
+
+
+
 document.addEventListener('DOMContentLoaded', () => {
   // Add the 'animated' class to the curtain after a short delay
   setTimeout(() => {
     const curtain = document.querySelector('.curtain');
     curtain.classList.add('animated');
   }, 250); // Delay to ensure the curtain is visible before animation starts
-});
 
 
-document.addEventListener('DOMContentLoaded', () => {
+
+
   // Select the .xtra-layer element
   const container = document.querySelector('.rotating-container');
   const layer = document.querySelector('.xtra-layer');
@@ -104,10 +113,10 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }, 1900); // Delay before animation starts
   }
-});
 
 
-document.addEventListener("DOMContentLoaded", function () {
+
+
     //Welcome Section
     const welcome_text = document.querySelector('.welcome-text');
     const welcome_description = document.querySelector('.welcome-description');
@@ -261,10 +270,10 @@ document.addEventListener("DOMContentLoaded", function () {
     const curtainCenterY = curtainRect.height / 2;
 
     // Calculate the vertical center of the technologies-container
-    const sectionCenterY = sectionRect.top + sectionRect.height / 2;
+    const dataSectionCenterY = sectionRect.top + sectionRect.height / 2;
 
     // Determine the distance between the section's center and the curtain's center
-    const distanceFromCurtainCenter = sectionCenterY - curtainCenterY;
+    const distanceFromCurtainCenter = dataSectionCenterY - curtainCenterY;
 
     // Update scroll position
     const scrollPosition = curtain.scrollTop;
@@ -287,56 +296,80 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-  //Dataset Section
 
-  const spaces = document.getElementById("gradient-space");
-  const data_title = document.getElementById('dataset_title');
 
-  // Exit if any required element doesn't exist
-  if (!data_title) {
-    console.warn("Required elements not found.");
-    return;
-  }
 
-  // Define the threshold for center alignment (adjust as needed)
-  const DataTitleCenterThreshold = 590;
 
-  // Scroll event listener for the .curtain element
-  curtain.addEventListener("scroll", function () {
-    // Get the bounding rectangle of the section relative to the viewport
+
+// Dataset Section
+const recommendation_section = document.querySelector(".recommendations-info");
+
+const spaces = document.getElementById("gradient-space");
+const data_title = document.getElementById("dataset_title");
+const data_slider = document.querySelector(".slider");
+
+
+// Exit if required elements are missing
+if (!spaces || !data_title || !data_slider || !curtain) {
+  console.warn("Required elements not found.");
+} else {
+  function updateTitlePosition() {
     const sectionRect = spaces.getBoundingClientRect();
     const curtainRect = curtain.getBoundingClientRect();
+    const data_sliderTop = data_slider.getBoundingClientRect().top;
+    let data_titleBottom = data_title.getBoundingClientRect().bottom;
 
-    // Calculate the center of the curtain's visible area (viewport center)
     const curtainCenterY = curtainRect.height / 2;
-
-    // Calculate the vertical center of the technologies-container
     const sectionCenterY = sectionRect.top + sectionRect.height / 2;
-
-    // Determine the distance between the section's center and the curtain's center
     const distanceFromCurtainCenter = sectionCenterY - curtainCenterY;
-    // Update scroll position
     const scrollPosition = curtain.scrollTop;
-    const dynamicTopTitle = curtainCenterY - data_title.offsetHeight / 2 + scrollPosition;
 
-    if (distanceFromCurtainCenter > 240) {
-        data_title.style.visibility = "hidden"; // Hide the element
-    } else {
-        data_title.style.visibility = "visible"; // Show the element
-    }
+    let dynamicTopTitle = curtainCenterY - data_title.offsetHeight / 2 + scrollPosition;
 
-    if (Math.abs(distanceFromCurtainCenter) <= DataTitleCenterThreshold) {
+    // Prevent extreme positioning by clamping values
+    dynamicTopTitle = Math.max(dynamicTopTitle, 0);
+    data_titleBottom = Math.min(data_titleBottom, document.documentElement.clientHeight);
 
+    data_title.style.visibility = "visible";
+
+    const recommendation_bottom = recommendation_section.getBoundingClientRect().bottom;
+    console.log(recommendation_bottom);
+
+    if (data_sliderTop < 0 || distanceFromCurtainCenter > 240) {
+      //data_title.style.top = sectionRect.top;
+      data_title.style.visibility = "hidden";
+    } else if (data_sliderTop - data_titleBottom > 30) {
       data_title.style.position = "absolute";
       data_title.style.top = `${dynamicTopTitle}px`;
-
     }
+  }
+
+
+
+
+  // Scroll event listener
+  curtain.addEventListener("scroll", () => requestAnimationFrame(updateTitlePosition));
+
+  // Resize event listener
+  window.addEventListener("resize", () => {
+    requestAnimationFrame(() => {
+      updateTitlePosition();
+
+      // Reset data_title position if needed
+      data_title.style.position = "absolute";
+      data_title.style.top = recommendation_bottom; // Let browser recalculate its position
+    });
   });
-});
+
+  // Run the function initially to set correct positions
+  updateTitlePosition();
+}
 
 
 
-document.addEventListener('DOMContentLoaded', () => {
+
+
+
   const walkthrough = {
     index: 0,
 
@@ -398,7 +431,6 @@ document.addEventListener('DOMContentLoaded', () => {
   walkthrough.updateScreen();
 
   // Use keyboard navigation with e.key instead of e.which
-  document.addEventListener('keydown', (e) => {
     switch (e.key) {
       case 'ArrowLeft': // Left arrow key
         walkthrough.prevScreen();
@@ -410,7 +442,10 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
     }
     e.preventDefault(); // Prevent default behavior (optional)
-  });
+
+
+
+
 
 });
 
@@ -418,7 +453,29 @@ document.addEventListener('DOMContentLoaded', () => {
 document.addEventListener("DOMContentLoaded", function () {
     const overview_text = document.querySelector('.overview-container');
     setTimeout(() => {
-
         overview_text.classList.add('show');
     }, 2000); // 2-second delay
+
+});
+
+
+document.addEventListener('DOMContentLoaded', () => {
+  const links = document.querySelectorAll('a:not([target="_blank"]):not([href^="#"])');
+  const out_curtain = document.querySelector('.out-curtain');
+
+  links.forEach(link => {
+    link.addEventListener('click', function (e) {
+      e.preventDefault();
+      const href = this.href;
+
+      // Ensure transition class is applied on next frame
+      requestAnimationFrame(() => {
+        out_curtain.classList.add('transition-out');
+
+        setTimeout(() => {
+          window.location.href = href;
+        }, 1000); // Match your CSS transition duration (in ms)
+      });
+    });
+  });
 });
