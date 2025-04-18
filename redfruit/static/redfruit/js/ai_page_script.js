@@ -1,4 +1,15 @@
 
+window.addEventListener('load', () => {
+    upload_container = document.querySelector('.upload-container');
+    document.body.classList.add('animated');
+    document.body.classList.add('transition');
+    upload_container.classList.add('animated');
+
+
+
+});
+
+
 const fileDropZone = document.getElementById("fileDropZone");
 const fileInput = document.getElementById("fileInput");
 const fileList = document.getElementById("fileList");

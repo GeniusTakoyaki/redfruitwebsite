@@ -3866,12 +3866,14 @@ textarea.form-control-lg {
 }
 .navbar-toggler:hover {
   text-decoration: none;
+  color: #fed0bb !important;
 }
 .navbar-toggler:focus {
   text-decoration: none;
   outline: 0;
-  box-shadow: 0 0 0 var(--bs-navbar-toggler-focus-width);
+  box-shadow: 0 0 0 0px;
 }
+
 
 .navbar-toggler-icon {
   display: inline-block;
@@ -10904,7 +10906,8 @@ section {
 #mainNav .navbar-toggler {
   font-size: 0.875rem;
   padding: 0.75rem 1rem;
-  color: #212529;
+  color: black;
+  border: none;
 }
 #mainNav .navbar-nav .nav-item .nav-link {
   color: #212529;
@@ -11207,7 +11210,7 @@ footer a:hover, footer a:active, footer a:focus {
 
 .button-33:hover {
   box-shadow: rgba(254, 208, 187, .35) 0 -25px 18px -14px inset, rgba(254, 208, 187, .25) 0 1px 2px, rgba(254, 208, 187, .25) 0 2px 4px, rgba(254, 208, 187, .25) 0 4px 8px, rgba(254, 208, 187, .25) 0 8px 16px, rgba(254, 208, 187, .25) 0 16px 32px;
-  transform: scale(1.05) rotate(-1deg);  
+  transform: scale(1.05);
 }
 
 #light_button {
@@ -11456,3 +11459,10 @@ body.color-change::after {
         top: 75px;
     }
 }
+
+
+#navbarResponsive {
+  transition: height 0.5s ease-out;
+}
+
+

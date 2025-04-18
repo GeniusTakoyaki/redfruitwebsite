@@ -13,6 +13,8 @@ body {
     display: flex; /* Use flexbox to center content */
     justify-content: center; /* Centers horizontally */
     align-items: center; /* Centers vertically */
+    transform: scale(1);
+    transition: transform 1s ease-out 1s;
 
     overflow: hidden;
     position: fixed;
@@ -39,6 +41,10 @@ body {
     /*backdrop-filter: blur(20px);  More intense blur 
     -webkit-backdrop-filter: blur(20px); For compatibility */
     /* border: 1px solid rgba(255, 255, 255, 0.1); Very subtle border */
+
+    transform: scale(0.8);
+    opacity: 0;
+    transition: transform 1s ease-out 1.5s, opacity 1s ease-out 1.75s;
 }
 
 
@@ -298,4 +304,48 @@ body {
 .hover-container.animate {
     backdrop-filter: blur(20px);
     background: rgba(255, 255, 255, 0.1);
+}
+
+
+body::before{
+    content: '';
+
+
+    position: fixed;
+    z-index: 999;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: #fed0bb;
+    opacity: 1;
+    transition: opacity 1s ease-in 1s;
+}
+
+body.animated::before {
+  animation: fadeOutOverlay 1s ease-in forwards;
+}
+
+@keyframes fadeOutOverlay {
+  0% {
+    opacity: 1;
+    visibility: visible;
+  }
+  99% {
+    opacity: 0.01;
+    visibility: visible;
+  }
+  100% {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+body.transition {
+    transform: scale(1.1);
+}
+
+.upload-container.animated {
+    transform: scale(1);
+    opacity: 1;
 }
