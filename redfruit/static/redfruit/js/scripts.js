@@ -5,34 +5,7 @@
 */
 //
 // Scripts
-// 
-/*
-window.addEventListener('DOMContentLoaded', event => {
-
-    // Activate Bootstrap scrollspy on the main nav element
-    const mainNav = document.body.querySelector('#mainNav');
-    if (mainNav) {
-        new bootstrap.ScrollSpy(document.body, {
-            target: '#mainNav',
-            offset: 74,
-        });
-    };
-
-    // Collapse responsive navbar when toggler is visible
-    const navbarToggler = document.body.querySelector('.navbar-toggler');
-    const responsiveNavItems = [].slice.call(
-        document.querySelectorAll('#navbarResponsive .nav-link')
-    );
-    responsiveNavItems.map(function (responsiveNavItem) {
-        responsiveNavItem.addEventListener('click', () => {
-            if (window.getComputedStyle(navbarToggler).display !== 'none') {
-                navbarToggler.click();
-            }
-        });
-    });
-
-});
-*/
+//
 
 window.addEventListener('pageshow', (event) => {
   if (event.persisted) {
@@ -478,4 +451,29 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
   });
+
+
+  contact_btn = document.getElementById('nav-button');
+  modal_fade = document.querySelector('.background-fade');
+  close_modal_btn = document.getElementById('close-contact-modal');
+  modal_container = document.querySelector('.contact-container');
+  form = document.getElementById('contactForm');
+
+  contact_btn.addEventListener('click', function (){
+    modal_fade.classList.add('show');
+    modal_fade.classList.remove('hide');
+    modal_container.classList.add('show');
+    modal_container.classList.remove('hide');
+  });
+
+  close_modal_btn.addEventListener('click', function (){
+    modal_fade.classList.remove('show');
+    modal_fade.classList.add('hide');
+    modal_container.classList.remove('show');
+    modal_container.classList.add('hide');
+    form.reset();
+
+  })
+
+
 });
