@@ -281,6 +281,8 @@ const spaces = document.getElementById("gradient-space");
 const data_title = document.getElementById("dataset_title");
 const data_slider = document.querySelector(".slider");
 
+let fixed_title = false;
+
 
 // Exit if required elements are missing
 if (!spaces || !data_title || !data_slider || !curtain) {
@@ -306,14 +308,23 @@ if (!spaces || !data_title || !data_slider || !curtain) {
     data_title.style.visibility = "visible";
 
     const recommendation_bottom = recommendation_section.getBoundingClientRect().bottom;
-    console.log(recommendation_bottom);
 
-    if (data_sliderTop < 0 || distanceFromCurtainCenter > 240) {
-      //data_title.style.top = sectionRect.top;
-      data_title.style.visibility = "hidden";
-    } else if (data_sliderTop - data_titleBottom > 30) {
-      data_title.style.position = "absolute";
-      data_title.style.top = `${dynamicTopTitle}px`;
+
+    if (!fixed_title) {
+
+        if (data_sliderTop < 0 || distanceFromCurtainCenter > 240) {
+          //data_title.style.top = sectionRect.top;
+          data_title.style.visibility = "hidden";
+        }
+
+        if (data_sliderTop - data_titleBottom > 40) {
+
+            data_title.style.position = "absolute";
+            data_title.style.top = `${dynamicTopTitle}px`;
+        } else {
+            fixed_title = true;
+        }
+
     }
   }
 
@@ -325,13 +336,16 @@ if (!spaces || !data_title || !data_slider || !curtain) {
 
   // Resize event listener
   window.addEventListener("resize", () => {
+
     requestAnimationFrame(() => {
+      fixed_title = false;
       updateTitlePosition();
 
       // Reset data_title position if needed
       data_title.style.position = "absolute";
-      data_title.style.top = recommendation_bottom; // Let browser recalculate its position
+      data_title.style.bottom = data_sliderTop - 40; // Let browser recalculate its position
     });
+
   });
 
   // Run the function initially to set correct positions
@@ -458,6 +472,7 @@ document.addEventListener('DOMContentLoaded', () => {
   close_modal_btn = document.getElementById('close-contact-modal');
   modal_container = document.querySelector('.contact-container');
   form = document.getElementById('contactForm');
+  submit_btn = document.getElementById('submitButton');
 
   contact_btn.addEventListener('click', function (){
     modal_fade.classList.add('show');
@@ -474,6 +489,19 @@ document.addEventListener('DOMContentLoaded', () => {
     form.reset();
 
   })
+
+    form.addEventListener("submit", function (e) {
+    if (!this.checkValidity()) {
+      e.preventDefault(); // Prevent submission if invalid
+      this.reportValidity(); // Show built-in validation popups
+        }
+    });
+
+    form.addEventListener("input", function () {
+        if (form.checkValidity()) {
+            //Send the Message
+          }
+    });
 
 
 });

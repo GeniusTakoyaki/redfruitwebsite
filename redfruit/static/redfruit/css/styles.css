@@ -2861,7 +2861,7 @@ textarea.form-control-lg {
   box-shadow: var(--bs-btn-focus-box-shadow);
 }
 .btn-check:checked + .btn, :not(.btn-check) + .btn:active, .btn:first-child:active, .btn.active, .btn.show {
-  color: var(--bs-btn-active-color);
+  color: gray;
   background-color: var(--bs-btn-active-bg);
   border-color: var(--bs-btn-active-border-color);
 }
@@ -11268,6 +11268,7 @@ body.color-change::after {
 }
 
 .out-curtain {
+
   position: fixed;
   top: 0;
   left: 0;
@@ -11399,4 +11400,21 @@ body.color-change::after {
     background-color: #b23a48;
 }
 
+
+.recommendation-title-div {
+    position: relative;
+    z-index: -1;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: end;
+    height: 50vh;
+    background-color: #fed0bb;
+}
+
+.recommendation-title-text {
+    color: #461220;
+    font-size: 2.6rem;
+    margin-bottom: 40px;
+}
 

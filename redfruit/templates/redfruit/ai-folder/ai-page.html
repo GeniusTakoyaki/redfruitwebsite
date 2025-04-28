@@ -16,7 +16,7 @@
         <div class="mb-3">
             <div id="fileDropZone" class="file-drop">
                 Drag & Drop Files or Click to Upload
-                <input id="fileInput" class="custom-file-input" type="file" multiple>
+                <input id="fileInput" accept="image/png, image/jpeg" class="custom-file-input" type="file" multiple>
             </div>
             <div id="file_item" class="file_item"></div>
 
@@ -41,7 +41,10 @@
                 <!-- Filename -->
                 <div class="result-item">
                     <strong>Filename:</strong>
-                    <span id="filename">N/A</span>
+                    <span id="filename">
+                        <div id="text">
+                        N/A
+                    </div></span>
                 </div>
 
                 <!-- Prediction -->

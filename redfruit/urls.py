@@ -7,4 +7,5 @@ urlpatterns = [
     path('how_it_works_page/', views.how_it_works_page, name='how-it-works'),
     path('discover_page/', views.discover, name='discover'),
     path('upload/', views.upload_file, name='upload_file'),
+    path('send-email/', views.send_message, name='send_email'),
 ]

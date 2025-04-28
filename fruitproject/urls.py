@@ -20,6 +20,13 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 
+from django.shortcuts import render
+
+def custom_404(request, exception):
+    return render(request, 'redfruit/directs/error.html', status=404)
+
+handler404 = custom_404
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('redfruit.urls')),  # Make sure your app's URLs are included

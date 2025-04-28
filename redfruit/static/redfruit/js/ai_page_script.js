@@ -40,18 +40,31 @@ fileDropZone.addEventListener("dragleave", () => {
 
 fileDropZone.addEventListener("drop", (event) => {
     event.preventDefault();
-    fileDropZone.classList.remove("dragover");
+
+
+
+
 
     console.log("Dropped files:", event.dataTransfer.files); // Debugging
 
     if (event.dataTransfer.files.length > 0) {
-        uploadedFile = event.dataTransfer.files[0]; // ✅ Assign file correctly
-        console.log("Uploaded File:", uploadedFile); // Debugging
-        handleFile(uploadedFile);
-        updateSubmitButton(uploadedFile);
+
+
+        const fileType = event.dataTransfer.files[0].type;
+        if (fileType === 'image/png' || fileType === 'image/jpeg') {
+            uploadedFile = event.dataTransfer.files[0]; // ✅ Assign file correctly
+            console.log("Uploaded File:", uploadedFile); // Debugging
+            handleFile(uploadedFile);
+            updateSubmitButton(uploadedFile);
+        } else {
+            alert('Invalid File Type!');
+        }
+
     } else {
         console.error("No files detected in drop event.");
     }
+
+    fileDropZone.classList.remove("dragover");
 });
 
 
@@ -63,6 +76,10 @@ function handleFile(file) {
     if (file) {
         const listItem = document.createElement("div");
         listItem.textContent = `📄 ${file.name} (${(file.size / 1024).toFixed(2)} KB)`;
+        listItem.style.whiteSpace = 'nowrap';
+        listItem.style.overflow = 'hidden';
+        listItem.style.maxWidth = '300px';
+        listItem.style.textOverflow = 'ellipsis';
         file_item.appendChild(listItem);
     }
 }
@@ -117,7 +134,7 @@ if (uploadedFile != null) {
         console.log('Server Response:', result); // Log the server's response
         // Dynamically update the HTML with the server response
         if (result.status === 'success') {
-            const filename_tag = document.getElementById('filename');
+            const filename_tag = document.getElementById('text');
             const prediction_tag = document.getElementById('prediction');
             const confidence_tag = document.getElementById('confidence');
 
@@ -137,10 +154,19 @@ if (uploadedFile != null) {
     });
 
     closeModal.addEventListener('click', () => {
-      background_container.classList.remove('animate');
       image_container.classList.remove('animate');
       info_container.classList.remove('animate');
+
+
+
+      background_container.classList.remove('animate');
       background_filter.classList.remove('animate');
 
-      blurOverlay.style.display = 'none'; // Hide the blur overlay
+      background_filter.scrollTop = 0;
+
+
+      setTimeout(() => {
+        blurOverlay.style.display = 'none';
+      }, 2000);
+
     });
