@@ -1,6 +1,6 @@
 # redfruit/utils/classifier.py
 
-import os
+#import os
 from PIL import Image
 import torchvision.transforms as transforms
 import torch
@@ -111,10 +111,10 @@ def classify_image(file):
         # Predict using the model
         with torch.no_grad():  # Disable gradient computation
             outputs = model(image_tensor)
-            probabilities = torch.softmax(outputs, dim=1)  # Apply softmax to get probabilities
-            confidence, predicted = torch.max(probabilities, 1)  # Get predicted class and confidence
+            confidence, predicted = torch.max(outputs, 1)  # Get predicted class and confidence
+            simplified_confidence = round(confidence.item() * 100, 3)
 
-        print(f"Prediction: {predicted.item()}, Confidence: {confidence.item()}")  # Debugging statement
+        print(f"Prediction: {predicted.item()}, Confidence: {simplified_confidence}")  # Debugging statement
 
         # Return results as a dictionary
         return {
@@ -123,7 +123,7 @@ def classify_image(file):
             'filesize': file.size,  # Include the file size (in bytes)
             'content_type': file.content_type,  # Include the MIME type (e.g., image/jpeg)
             'prediction': mapping[predicted.item()],
-            'confidence': confidence.item(),
+            'confidence': simplified_confidence,
         }
     except Exception as e:
         print(f"Error during classification: {str(e)}")  # Debugging statement

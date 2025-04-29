@@ -4,7 +4,8 @@ from django.views.decorators.csrf import csrf_exempt
 
 from django.core.mail import EmailMultiAlternatives
 from django.utils.html import strip_tags
-from django.http import HttpResponse
+
+import traceback
 
 
 
@@ -46,35 +47,123 @@ def upload_file(request):
 
 
 def send_message(request):
-    if request.method == 'POST':
-        name = request.POST.get('name')
-        email = request.POST.get('email')
-        subject = request.POST.get('subject')
-        message = request.POST.get('message')
+    # try:
+    name = request.POST.get('name')
+    email = request.POST.get('email')
+    subject = request.POST.get('subject')
+    message = request.POST.get('message')
 
-        formatted_message = message.replace('\n', '<br>')
+    formatted_message = message.replace('\n', '<br>')
 
-        html_content = f"""
-        <html>
-            <body style="font-family: Arial, sans-serif; color: #333;">
-                <h2 style="color: #D9230F;">New Message from Redfruit AI</h2>
+    html_content = f"""
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Redfruit AI Inquiry</title>
+        <style>
+            body {{
+                font-family: 'Arial', sans-serif;
+                background-color: #f4f4f4;
+                margin: 0;
+                padding: 0;
+                color: #333;
+            }}
+            .container {{
+                max-width: 600px;
+                margin: 20px auto;
+                background-color: #ffffff;
+                border-radius: 8px;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                overflow: hidden;
+            }}
+            .header {{
+                background-color: #d1454f;
+                padding: 20px;
+                text-align: center;
+                color: #ffffff;
+            }}
+            .header h1 {{
+                margin: 0;
+                font-size: 24px;
+                font-weight: normal;
+            }}
+            .content {{
+                padding: 30px;
+            }}
+            .content p {{
+                margin: 10px 0;
+                line-height: 1.6;
+            }}
+            .content strong {{
+                color: #333;
+            }}
+            .content .message {{
+                background-color: #f4f4f4;
+                padding: 15px;
+                border-radius: 5px;
+                margin-top: 15px;
+            }}
+            .footer {{
+                background-color: #b23a48;
+                padding: 10px;
+                text-align: center;
+                color: #ffffff;
+                font-size: 12px;
+            }}
+            .footer a {{
+                color: #ffffff;
+                text-decoration: none;
+            }}
+            @media only screen and (max-width: 600px) {{
+                .container {{
+                    margin: 10px;
+                }}
+                .header h1 {{
+                    font-size: 20px;
+                }}
+                .content {{
+                    padding: 20px;
+                }}
+            }}
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="header">
+                <h1>New Message from Redfruit AI</h1>
+            </div>
+            <div class="content">
                 <p><strong>Name:</strong> {name}</p>
                 <p><strong>Email:</strong> {email}</p>
                 <p><strong>Subject:</strong> {subject}</p>
-                <p><strong>Message:</strong><br>{formatted_message}</p>
-            </body>
-        </html>
-        """
+                <div class="message">
+                    <p><strong>Message:</strong><br>{formatted_message}</p>
+                </div>
+            </div>
+            <div class="footer">
+                <p>Redfruit AI | <a href="https://yourwebsite.com">Visit Our Website</a></p>
+            </div>
+        </div>
+    </body>
+    </html>
+    """
 
-        text_content = strip_tags(html_content)  # fallback plain text
+    text_content = strip_tags(html_content)  # Fallback plain text
 
-        msg = EmailMultiAlternatives(
-            subject=f"Redfruit AI Inquiry: {subject}",
-            body=text_content,
-            from_email=f"Redfruit AI | {name} <galinato.jancarlo2873@gmail.com>",
-            to=['jancarlogalinato@gmail.com'],  # or whoever receives the email
-        )
-        msg.attach_alternative(html_content, "text/html")
-        msg.send()
+    msg = EmailMultiAlternatives(
+        subject=f"Redfruit AI Inquiry: {subject}",
+        body=text_content,
+        from_email=f"Redfruit AI | {name} <galinato.jancarlo2873@gmail.com>",
+        to=['jancarlogalinato@gmail.com'],
+    )
+    msg.attach_alternative(html_content, "text/html")
+    msg.send()
 
-        return render(request, 'redfruit/directs/email_success.html')  # or redirect or message
+    return JsonResponse({'success': True})
+
+    # except Exception as e:
+    #     print(f"Email sending failed: {str(e)}")
+    #     traceback.print_exc()
+    #     return JsonResponse({'success': False, 'error': str(e)})

@@ -467,12 +467,17 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
 
-  contact_btn = document.getElementById('nav-button');
-  modal_fade = document.querySelector('.background-fade');
-  close_modal_btn = document.getElementById('close-contact-modal');
-  modal_container = document.querySelector('.contact-container');
-  form = document.getElementById('contactForm');
-  submit_btn = document.getElementById('submitButton');
+  const contact_btn = document.getElementById('nav-button');
+  const modal_fade = document.querySelector('.background-fade');
+  const close_modal_btn = document.getElementById('close-contact-modal');
+  const modal_container = document.querySelector('.contact-container');
+  const form = document.getElementById('contactForm');
+  const submit_btn = document.getElementById('submitButton');
+  const message_sent = document.querySelector('.success-container');
+  const close_message_sent = document.getElementById('close-message-sent');
+
+  const popup_title = document.getElementById('popup-title');
+  const popup_message = document.getElementById('popup-message');
 
   contact_btn.addEventListener('click', function (){
     modal_fade.classList.add('show');
@@ -487,19 +492,73 @@ document.addEventListener('DOMContentLoaded', () => {
     modal_container.classList.remove('show');
     modal_container.classList.add('hide');
     form.reset();
+  });
 
-  })
 
-    form.addEventListener("submit", function (e) {
+  close_message_sent.addEventListener('click', function(){
+    modal_fade.classList.remove('show');
+    modal_fade.classList.add('hide');
+    message_sent.classList.add('out');
+
+    message_sent.addEventListener('transitionend', () => {
+      message_sent.style.visibility = 'hidden';  // hide it after fade completes
+      message_sent.classList.remove('activate');
+    });
+  });
+
+
+
+    form.addEventListener("submit", function (event) {
+    event.preventDefault();
+    submit_btn.disabled = true;
+
     if (!this.checkValidity()) {
-      e.preventDefault(); // Prevent submission if invalid
       this.reportValidity(); // Show built-in validation popups
-        }
+        return;
+      }
+
+    setTimeout(function (){
+      submit_btn.disabled = false;
+
+    }, 5000);
+
+      const formData = new FormData(this);
+
+      fetch(this.action, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'X-CSRFToken': this.querySelector('[name=csrfmiddlewaretoken]').value
+                },
+      }).then(response => response.json())
+      .then(data => {
+                // Catch the JSON response here
+                if (data.success) {
+                    popup_title.textContent = 'Message Sent Successfully!';
+                    popup_message.textContent = 'Thank you for your message. We\'ll get back to you soon.';
+                    modal_container.classList.remove('show');
+                    modal_container.classList.add('hide');
+                    form.reset(); // Clear form
+                } else {
+                    popup_title.textContent = 'Message Failed to Send';
+                    popup_message.textContent = 'An error occurred: ' + (data.error || 'Please try again.');
+                    modal_container.classList.remove('show');
+                    modal_container.classList.add('hide');
+
+                }
+                message_sent.classList.remove('out');
+                message_sent.classList.add('activate'); // Show error popup
+            })
+            .catch(error => {
+                popup_title.textContent = 'Message Failed to Send';
+                popup_message.textContent = 'An error occurred. Please try again.';
+                message_sent.classList.add('activate');
+            });
     });
 
     form.addEventListener("input", function () {
         if (form.checkValidity()) {
-            //Send the Message
+            form.reportValidity();
           }
     });
 

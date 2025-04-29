@@ -4,6 +4,7 @@
 }
 
 body {
+  background-color: #fed0bb;
   padding: 0;
   margin: 0;
 }
@@ -42,7 +43,7 @@ body {
   font-size: 236px;
   font-weight: 200;
   margin: 0px;
-  color: #211b19;
+  color: #461220;
   text-transform: uppercase;
   position: absolute;
   left: 50%;
@@ -57,7 +58,7 @@ body {
   font-size: 28px;
   font-weight: 400;
   text-transform: uppercase;
-  color: #211b19;
+  color: #d1454f;
   background: #fed0bb;
   padding: 10px 5px;
   margin: auto;
@@ -69,22 +70,23 @@ body {
 }
 
 .notfound a {
+  border-radius: 10px;
   font-family: 'Montserrat', sans-serif;
   display: inline-block;
   font-weight: 700;
   text-decoration: none;
-  color: #fff;
+  color: #fed0bb;
   text-transform: uppercase;
   padding: 13px 23px;
-  background: #ff6300;
+  background: #461220;
   font-size: 18px;
   -webkit-transition: 0.2s all;
   transition: 0.2s all;
 }
 
 .notfound a:hover {
-  color: #ff6300;
-  background: #461220;
+  color: black;
+  background: #c14c59;
 }
 
 @media only screen and (max-width: 767px) {
