@@ -110,6 +110,7 @@ def classify_image(file):
 
         # Predict using the model
         with torch.no_grad():  # Disable gradient computation
+            model.eval()
             outputs = model(image_tensor)
             confidence, predicted = torch.max(outputs, 1)  # Get predicted class and confidence
             simplified_confidence = round(confidence.item() * 100, 3)
