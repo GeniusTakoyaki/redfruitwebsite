@@ -26,7 +26,7 @@ SECRET_KEY = "django-insecure-*gg(a2$*%b=z*wc$!5o5-4^hic%b(wyek2wia9vs-4k4+j)2x@
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['redfruit.onrender.com' ,'localhost', '127.0.0.1']
 
 
 # Application definition
