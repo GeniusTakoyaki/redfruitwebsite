@@ -4,5 +4,5 @@ gunicorn==23.0.0
 numpy==2.0.2
 pillow==11.1.0
 sqlparse==0.5.3
-torch==2.6.0
+torch==2.6.0+cpu
 tzdata==2025.1
