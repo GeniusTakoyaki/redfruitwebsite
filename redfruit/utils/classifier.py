@@ -2,7 +2,7 @@
 
 #import os
 from PIL import Image
-import torchvision.transforms as transforms
+import numpy as np
 import torch
 from redfruit.utils.neural_network import NeuralNetwork
 
@@ -22,11 +22,23 @@ def transparency_remove(img):
 model = NeuralNetwork()
 model.load_state_dict(torch.load("redfruit/utils/Redfruit-Lightweight-NonNormalize-params.pth", map_location='cpu'))
 
-transform = transforms.Compose([
-    transforms.Resize((128,128)),
-    transforms.Grayscale(num_output_channels=1),
-    transforms.ToTensor()
-])
+
+def transform_image(image):
+    # Resize to 128x128 (equivalent to transforms.Resize((128,128)))
+    image = image.resize((128, 128))
+
+    # Convert to single-channel grayscale (equivalent to transforms.Grayscale(num_output_channels=1))
+    image = image.convert("L")  # "L" mode for 1-channel grayscale
+
+    # Convert to NumPy array and normalize to [0, 1] (equivalent to transforms.ToTensor())
+    image_array = np.array(image, dtype=np.float32) / 255.0  # Shape: (128, 128)
+
+    # Convert to PyTorch tensor and add channel dimension
+    tensor = torch.from_numpy(image_array)  # Shape: (128, 128)
+    tensor = tensor.unsqueeze(0)  # Shape: (1, 128, 128) to match (C, H, W)
+    tensor = tensor.unsqueeze(0)
+
+    return tensor
 
 mapping = {0: 'Tomatoes', 1: 'Apples', 2: 'Unknown'}
 
@@ -47,7 +59,7 @@ def classify_image(file):
         print("Image opened successfully.")  # Debugging statement
         image = transparency_remove(image)
 
-        image_tensor = transform(image).unsqueeze(0)  # Add batch dimension
+        image_tensor = transform_image(image)  # Add batch dimension
         print("Image preprocessed successfully.")  # Debugging statement
 
         # Predict using the model
